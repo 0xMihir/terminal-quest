@@ -171,12 +171,14 @@ def launch_application(real_path, line, command_word=""):
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
-    stdout = stdout.decode()
-    stderr = stderr.decode()
     if stdout:
+        if type(stdout) != str:
+            stdout = stdout.decode()
         print((stdout.strip()))
 
     if stderr:
+        if type(stderr) != str:
+            stderr = stderr.decode()
         print((stderr.strip()))
 
 
