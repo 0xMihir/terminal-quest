@@ -13,7 +13,9 @@ from linux_story.common import fake_home_dir, get_username
 from kano.logging import logger
 from linux_story.helper_functions import get_script_cmd, is_exe, colour_string_with_preset
 import readline
+import socket
 
+hostname = socket.gethostname().split(".")[0]
 
 class KanoCmd(Cmd):
     terminal_commands = []
@@ -45,7 +47,7 @@ class KanoCmd(Cmd):
             fake_cwd = fake_cwd[:-1]
 
         username = get_username()
-        yellow_part = username + "@kano "
+        yellow_part = username + "@"+hostname+" "
         yellow_part = colour_string_with_preset(yellow_part, "yellow", True)
 
         blue_part = fake_cwd + ' $ '

@@ -2,7 +2,7 @@ from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.terminals.terminal_nano import TerminalNano
 
-bernard_text = _("Bernard stopped you looking in the basement!")
+bernard_text = ("Bernard stopped you looking in the basement!")
 
 
 def bernard_autocomplete(completions):

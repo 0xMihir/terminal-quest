@@ -13,9 +13,9 @@ class FinishDialog(KanoDialog):
 
     def __init__(self):
 
-        title_text = _('You\'ve completed Terminal Quest!')
+        title_text = ('You\'ve completed Terminal Quest!')
         description_text = \
-            _('We are working on the next Chapter. ' +\
+            ('We are working on the next Chapter. ' +\
             'In the meantime, would you like to send us any feedback?')
 
         KanoDialog.__init__(
@@ -23,12 +23,12 @@ class FinishDialog(KanoDialog):
             title_text=title_text,
             description_text=description_text,
             button_dict={
-                _('LAUNCH FEEDBACK'):
+                ('LAUNCH FEEDBACK'):
                 {
                     'color': 'blue',
                     'return_value': 'feedback'
                 },
-                _('CLOSE APPLICATION'):
+                ('CLOSE APPLICATION'):
                 {
                     'color': 'orange',
                     'return_value': 'close'

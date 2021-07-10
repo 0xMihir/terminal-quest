@@ -21,15 +21,15 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("{{gb:You've found the answer to the Swordmaster's riddle!}}"),
+        ("{{gb:You've found the answer to the Swordmaster's riddle!}}"),
         "",
-        _("{{lb:Go back to the Swordmaster's clearing.}}")
+        ("{{lb:Go back to the Swordmaster's clearing.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/clearing"
     hints = [
-        _("Head back to the {{bb:~/woods/clearing}} where the Swordmaster lives."),
-        _("{{rb:Use}} {{yb:cd ~/woods/clearing}} {{rb:to go back to the Swordmaster's clearing.}}")
+        ("Head back to the {{bb:~/woods/clearing}} where the Swordmaster lives."),
+        ("{{rb:Use}} {{yb:cd ~/woods/clearing}} {{rb:to go back to the Swordmaster's clearing.}}")
     ]
 
     def block_command(self, line):
@@ -41,7 +41,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        _("Knock on the Swordmaster's door.")
+        ("Knock on the Swordmaster's door.")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -49,7 +49,7 @@ class Step2(StepTemplateChmod):
         "echo knock knock"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the Swordmaster's door.}}")
+        ("{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the Swordmaster's door.}}")
     ]
 
     def __next__(self):
@@ -58,15 +58,15 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        _("Swordmaster:"),
-        _("{{Bb:\"If you have me, you want to share me."),
-        _("If you share me, you haven't got me."),
-        _("What am I?\"}}"),
+        ("Swordmaster:"),
+        ("{{Bb:\"If you have me, you want to share me."),
+        ("If you share me, you haven't got me."),
+        ("What am I?\"}}"),
         "",
-        _("{{yb:1. A secret}}"),
-        _("{{yb:2. I don't know}}"),
+        ("{{yb:1. A secret}}"),
+        ("{{yb:2. I don't know}}"),
         "",
-        _("Use {{lb:echo}} to reply.")
+        ("Use {{lb:echo}} to reply.")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -94,14 +94,14 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        _("{{wb:Clunck.}} {{gb:It sounds like the door unlocked.}}"),
+        ("{{wb:Clunck.}} {{gb:It sounds like the door unlocked.}}"),
         "",
-        _("{{lb:Go in the house.}}")
+        ("{{lb:Go in the house.}}")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing/house"
     hints = [
-        _("{{rb:Use}} {{yb:cd house}} {{rb:to go inside.}}")
+        ("{{rb:Use}} {{yb:cd house}} {{rb:to go inside.}}")
     ]
 
     def block_command(self, line):
@@ -113,12 +113,12 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        _("{{lb:Look around.}}")
+        ("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     commands = [
         "ls"

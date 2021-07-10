@@ -18,11 +18,11 @@ class StepTemplateMkdir(StepTemplate):
 
 class Step1(StepTemplateMkdir):
     story = [
-        _("{{gb:Well done, it looks like everyone is here!}}"),
-        _("\nRuth: {{Bb:\"Thank you so much!\"}}"),
-        _("{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything " +\
+        ("{{gb:Well done, it looks like everyone is here!}}"),
+        ("\nRuth: {{Bb:\"Thank you so much!\"}}"),
+        ("{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything " +\
         "you've done.\"}}"),
-        _("\nUse {{yb:cat}} to check that the animals are happy in here.")
+        ("\nUse {{yb:cat}} to check that the animals are happy in here.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -34,7 +34,7 @@ class Step1(StepTemplateMkdir):
         "cat Cobweb"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} {{yb:cat Daisy}}{{rb:.}}")
+        ("{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} {{yb:cat Daisy}}{{rb:.}}")
     ]
 
     deleted_items = [
@@ -48,9 +48,9 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        _("{{pb:Ding. Dong.}}\n"),
-        _("Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"),
-        _("Quick! {{lb:Look around}} and see if anyone is missing.")
+        ("{{pb:Ding. Dong.}}\n"),
+        ("Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"),
+        ("Quick! {{lb:Look around}} and see if anyone is missing.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -60,7 +60,7 @@ class Step2(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
+        ("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
     deleted_items = [
@@ -74,10 +74,10 @@ class Step2(StepTemplateMkdir):
 class Step3(StepTemplateMkdir):
 
     story = [
-        _("It appears that everyone is still here..."),
-        _("{{pb:Ding. Dong.}}\n"),
-        _("Ruth: {{Bb:\"I heard it again! Is that the sound you heard when my husband went missing?\"\n}}"),
-        _("Have another quick {{lb:look around}}.")
+        ("It appears that everyone is still here..."),
+        ("{{pb:Ding. Dong.}}\n"),
+        ("Ruth: {{Bb:\"I heard it again! Is that the sound you heard when my husband went missing?\"\n}}"),
+        ("Have another quick {{lb:look around}}.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -87,7 +87,7 @@ class Step3(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
+        ("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     deleted_items = [
         "~/town/.hidden-shelter/Edward"
@@ -100,21 +100,21 @@ class Step3(StepTemplateMkdir):
 # TODO: FIX THIS STEP
 class Step4(StepTemplateMkdir):
     story = [
-        _("Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. " +\
+        ("Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. " +\
         "I wonder why it's ringing?\"}}"),
-        _("Perhaps we should investigate that sound. Who else do we " +\
+        ("Perhaps we should investigate that sound. Who else do we " +\
         "know?"),
-        _("Maybe you should check back on the family in the " +\
+        ("Maybe you should check back on the family in the " +\
         "{{bb:.hidden-shelter}} and talk to them with your new found voice."),
         "",
-        _("Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}.")
+        ("Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/town/.hidden-shelter"
 
     hints = [
-        _("{{rb:We can go directly to the}} {{bb:.hidden-shelter}} " +\
+        ("{{rb:We can go directly to the}} {{bb:.hidden-shelter}} " +\
         "{{rb:using}} {{yb:cd ~/town/.hidden-shelter}}")
     ]
 
@@ -129,7 +129,7 @@ class Step4(StepTemplateMkdir):
     def check_command(self, line):
         # If the command passes, then print a nice hint.
         if line.startswith("cd") and not self.get_command_blocked() and not self.get_fake_path() == self.end_dir:
-            hint = _("\n{{gb:Keep going.}}")
+            hint = ("\n{{gb:Keep going.}}")
             self.send_hint(hint)
         else:
             return StepTemplateMkdir.check_command(self, line)
@@ -140,7 +140,7 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        _("Have a {{lb:look around}}.")
+        ("Have a {{lb:look around}}.")
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -150,7 +150,7 @@ class Step5(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
     def __next__(self):

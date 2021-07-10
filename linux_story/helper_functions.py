@@ -228,10 +228,10 @@ def get_ascii_art(name):
             ascii_art = f.read()
 
     except (IOError, OSError) as e:
-            logger.error('Could not load file {} - [{}]'.format(asset_path, e))
+        logger.error('Could not load file {} - [{}]'.format(asset_path, e))
     except Exception as e:
-            logger.error('Unexpected error while loading the ascii art'
-                         ' - [{}]'.format(e))
+        logger.error('Unexpected error while loading the ascii art'
+                     ' - [{}]'.format(e))
 
     return ascii_art
 
@@ -253,7 +253,8 @@ def get_path_to_file_in_system(name):
     lang_dirs = get_language_dirs()
 
     for lang_dir in lang_dirs:
-        asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
+        asset_path = os.path.join(
+            localized_story_files_dir_pattern.format(lang_dir), name)
         if os.path.isfile(asset_path):
             path_in_system = asset_path
             break
@@ -348,3 +349,44 @@ def has_write_permissions(path):
 
 def has_execute_permissions(path):
     return os.access(path, os.X_OK)
+
+
+# pairs = {
+#     'r': 'red',
+#     'g': 'green',
+#     'G': 'light-green',
+#     'b': 'blue',
+#     'y': 'yellow',
+#     'o': 'extended(208)',
+#     'w': 'white',
+#     'l': 'extended(147)',
+#     'c': 'cyan',
+#     'p': 'extended(177)',
+#     'P': 'extended(212)',
+#     'B': 'light-blue'
+# }
+pairs = {'r': 1, 'g': 2, 'G': 10, 'b': 4, 'y': 3, 'o': 208,
+         'w': 15, 'l': 147, 'c': 6, 'p': 177, 'P': 212, 'B': 12}
+
+def colorize(match):
+    color = match.group(1)[0]
+    bold = int(match.group(1)[1] == "b")
+    return f"\033[{bold};38;5;{pairs[color]}m"
+
+
+def colorize_string(str):
+    a = re.sub("\{\{(\w+)?:",colorize,str)
+    a = re.sub("\}\}","\033[0m",a)
+    return a
+
+# def colorize_string(str):
+#     split = re.split("(\{\{.*?\}\})", str, flags=re.MULTILINE)
+#     out = []
+#     for i in split:
+#         if i.startswith("{{"):
+#             target = re.search("\{\{\w+:(.*?)\}\}", i).group(1)
+#             out.append(decorate_string(
+#                 target, pairs[i[2]], bold=(i[3] == "b")))
+#         else:
+#             out.append(i)
+#     return "".join(out)

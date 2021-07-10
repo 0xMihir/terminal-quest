@@ -9,36 +9,34 @@
  
 import json
 import os
- 
-# from kano.utils import read_json, write_json, get_date_now, ensure_dir, \
-    # chown_path, run_print_output_error, run_bg, run_cmd
+import datetime
+from kano.utils     import read_json, write_json, ensure_dir, \
+    chown_path, run_print_output_error, run_bg, run_cmd
 from kano.logging import logger
-# from kano_profile.paths import apps_dir, xp_file, kanoprofile_dir, \
-#     app_profiles_file
- 
+from kano_profile.paths import apps_dir, xp_file, kanoprofile_dir, \
+    app_profiles_file
+
+def get_date_now():
+    return datetime.datetime.utcnow().isoformat()
  
 def get_app_dir(app_name):
-    return
     app_dir = os.path.join(apps_dir, app_name)
     return app_dir
  
  
 def get_app_data_dir(app_name):
-    return
     data_str = 'data'
     app_data_dir = os.path.join(get_app_dir(app_name), data_str)
     return app_data_dir
  
  
 def get_app_state_file(app_name):
-    return
     app_state_str = 'state.json'
     app_state_file = os.path.join(get_app_dir(app_name), app_state_str)
     return app_state_file
  
  
 def load_app_state(app_name):
-    return
     app_state_file = get_app_state_file(app_name)
     app_state = read_json(app_state_file)
     if not app_state:
@@ -47,7 +45,6 @@ def load_app_state(app_name):
  
  
 def load_app_state_encode(app_name):
-    return
     try:
         data = load_app_state(app_name)
         if data:
@@ -59,14 +56,11 @@ def load_app_state_encode(app_name):
  
  
 def load_app_state_variable(app_name, variable):
-    return
     data = load_app_state(app_name)
     if variable in data:
         return data[variable]
  
- 
 def load_app_state_variable_encode(app_name, variable):
-    return
     try:
         data = load_app_state_variable(app_name, variable)
         if data:
@@ -78,7 +72,7 @@ def load_app_state_variable_encode(app_name, variable):
  
  
 def save_app_state(app_name, data):
-    return
+    # print(app_name,data)
     """ Save a state of an application to the user's Kano profile.
  
         :param app_name: The application that this data are associated with.
@@ -102,7 +96,6 @@ def save_app_state(app_name, data):
  
  
 def save_app_state_decode(app_name, data):
-    return
     """ Just like save_app_state, but data is stringified.
  
         :param app_name: The application that this data are associated with.
@@ -120,7 +113,6 @@ def save_app_state_decode(app_name, data):
  
  
 def save_app_state_variable(app_name, variable, value):
-    return
     """ Save a state variable to the user's Kano profile.
  
         :param app_name: The application that this variable is associated with.
@@ -131,17 +123,16 @@ def save_app_state_variable(app_name, variable, value):
         :type value: any
     """
  
-    # msg = "save_app_state_variable {} {} {}".format(app_name, variable, value)
-    # logger.debug(msg)
+    msg = "save_app_state_variable {} {} {}".format(app_name, variable, value)
+    logger.debug(msg)
+    # print(app_name,variable,value)
+    data = load_app_state(app_name)
+    data[variable] = value
  
-    # data = load_app_state(app_name)
-    # data[variable] = value
- 
-    # save_app_state(app_name, data)
+    save_app_state(app_name, data)
  
  
 def save_app_state_variable_decode(app_name, variable, value):
-    return
     """ Just like save_app_state_variable, but the value is stringified.
  
         :param app_name: The application that this variable is associated with.
@@ -160,7 +151,6 @@ def save_app_state_variable_decode(app_name, variable, value):
  
  
 def update_upwards(app_name, variable, value):
-    return
     """ Only update a numeric value in the profile if the one given is higher.
     Useful for highscores, etc
  
@@ -184,7 +174,6 @@ def update_upwards(app_name, variable, value):
  
  
 def increment_app_state_variable(app_name, variable, value):
-    return
     logger.debug(
         "increment_app_state_variable {} {} {}".format(
             app_name, variable, value))
@@ -198,7 +187,6 @@ def increment_app_state_variable(app_name, variable, value):
  
  
 def get_app_list():
-    return
     if not os.path.exists(apps_dir):
         return []
     else:
@@ -207,7 +195,6 @@ def get_app_list():
  
  
 def get_gamestate_variables(app_name):
-    return
     allrules = read_json(xp_file)
     if not allrules:
         return list()
@@ -216,59 +203,13 @@ def get_gamestate_variables(app_name):
  
     for group, rules in groups.items():
         if group == 'multipliers':
-            return [str(key) for key in list(rules.keys())]
+            return [str(key) for key in rules.keys()]
  
  
-def check_installed(app):
-    return
-    """ Check if an app is installed and if not install it through kano apps.
-    *Note* The translation between app and the corresponding kano-apps name is
-    not straight forward. This function uses a mapping between those two.
-    :param app: App name
-    :type app: str
-    :returns: True iff the app is installed and available
-    :rtype: bool
-    """
-    from kano.utils.misc import is_installed
-    from kano.utils.shell import run_cmd
-    cmd_template = 'kano-apps install {app_name}'
-    debpkg_to_kano_appstore = {
-        'make-light': 'powerup'
-    }
-    # Check if is already installed
-    if is_installed(app):
-        return True
- 
-    # Check if we know how to install it
-    if app not in debpkg_to_kano_appstore:
-        logger.error(
-            "Do not know how to translate app '{}' to kano-apps"
-            .format(app)
-        )
-        return False
- 
-    # Install it using kano apps
-    logger.info(
-        "'{}' not installed will attempt to install it as '{}' using kano apps"
-        .format(app, debpkg_to_kano_appstore[app])
-    )
-    cmd = cmd_template.format(app_name=debpkg_to_kano_appstore[app])
-    run_cmd(cmd)
- 
-    # Check whether it has been installed
-    if not is_installed(app):
-        # Something probably went wrong here
-        logger.error(
-            "Attempted to install app '{}' but something went wrong"
-            .format(app)
-        )
-        return False
- 
-    return True
+
  
  
 def launch_project(app, filename, data_dir, background=False):
-    return
     # This is necessary to support the new official names
     # TODO: once the apps have been renamed this will not be necessary
     name_translation = {
@@ -294,7 +235,7 @@ def launch_project(app, filename, data_dir, background=False):
             "Can't find app '{}' in the app profiles - [{}]"
             .format(app_tr, exc)
         )
-        raise ValueError(_("App '{}' not available").format(app_tr))
+        raise ValueError(("App '{}' not available").format(app_tr))
  
     # Try to load the project if the app is already running, via a signal.
     _, _, rc = run_cmd('/usr/bin/kano-signal launch-share {}'.format(fullpath))
@@ -319,7 +260,6 @@ def launch_project(app, filename, data_dir, background=False):
  
  
 def get_app_xp_for_challenge(app, challenge_no):
-    return
     xp_file_json = read_json(xp_file)
  
     try:
@@ -329,7 +269,6 @@ def get_app_xp_for_challenge(app, challenge_no):
  
  
 def get_all_users():
-    return
     existing_users = []
     possible_users = os.listdir("/home")
     for user in possible_users:
@@ -340,7 +279,6 @@ def get_all_users():
  
  
 def save_app_state_variable_all_users(app, variable, value):
-    return
     if os.environ['LOGNAME'] != 'root':
         logger.error("Error: save_app_state_variable_all_users must be executed with root privileges")
         return

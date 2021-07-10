@@ -22,14 +22,14 @@ class StepTemplateCd(StepTemplate):
 
 class Step1(StepTemplateCd):
     story = [
-        _("That's weird. No time for that now though - lets find {{bb:Mum}}.\n "),
+        ("That's weird. No time for that now though - lets find {{bb:Mum}}.\n "),
     ]
     story += wrap_in_box([
-        _("{{gb:New Power}}: {{yb:cd}} lets you {{lb:move}}"),
-        _("between places."),
+        ("{{gb:New Power}}: {{yb:cd}} lets you {{lb:move}}"),
+        ("between places."),
     ])
     story += [
-        _("Use the command {{yb:cd ..}} to {{lb:leave}} your room.\n")
+        ("Use the command {{yb:cd ..}} to {{lb:leave}} your room.\n")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -42,8 +42,8 @@ class Step1(StepTemplateCd):
     ]
     highlighted_commands = ['cd']
     hints = [
-        _("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The}} {{lb:..}} {{rb:is the room behind you.}}"),
-        _("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}")
+        ("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The}} {{lb:..}} {{rb:is the room behind you.}}"),
+        ("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}")
     ]
 
     def block_command(self, line):
@@ -55,13 +55,13 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        _("You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.\n"),
-        _("{{lb:Look around}} at the different rooms using {{yb:ls}}.\n")
+        ("You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.\n"),
+        ("{{lb:Look around}} at the different rooms using {{yb:ls}}.\n")
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = [_("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
+    hints = [("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
     file_list = [
         {
             "path": "~/my-house/garden/greenhouse/note",
@@ -77,16 +77,16 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        _("{{pb:Ding. Dong.}}\n"),
-        _("What was that? A bell? That's a bit odd."),
-        _("You see the door to your {{bb:kitchen}}, and hear the sound of cooking."),
-        _("Sounds like someone is preparing breakfast!\n"),
-        _("To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}")
+        ("{{pb:Ding. Dong.}}\n"),
+        ("What was that? A bell? That's a bit odd."),
+        ("You see the door to your {{bb:kitchen}}, and hear the sound of cooking."),
+        ("Sounds like someone is preparing breakfast!\n"),
+        ("To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}")
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = [_("{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
+    hints = [("{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -97,13 +97,13 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        _("Great, you're in the {{bb:kitchen}}.\n"),
-        _("{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}.")
+        ("Great, you're in the {{bb:kitchen}}.\n"),
+        ("{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
-    hints = [_("{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
+    hints = [("{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
     def __next__(self):
         return 4, 5
@@ -111,13 +111,13 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        _("You see her busily working in a cloud of steam."),
-        _("Let's {{lb:listen}} to what {{bb:Mum}} has to say by using {{yb:cat}}.")
+        ("You see her busily working in a cloud of steam."),
+        ("Let's {{lb:listen}} to what {{bb:Mum}} has to say by using {{yb:cat}}.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
-    hints = [_("{{rb:Stuck? Type:}} {{yb:cat Mum}}{{rb:. Don\'t forget the capital letter!}}")]
+    hints = [("{{rb:Stuck? Type:}} {{yb:cat Mum}}{{rb:. Don\'t forget the capital letter!}}")]
 
     def __next__(self):
         return 5, 1

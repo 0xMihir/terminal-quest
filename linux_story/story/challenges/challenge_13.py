@@ -18,18 +18,18 @@ class StepTemplateMv(StepTemplate):
 
 class Step1(StepTemplateMv):
     story = [
-        _("{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!"),
-        _("I have another favour to ask..."),
+        ("{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!"),
+        ("I have another favour to ask..."),
 
-        _("We haven't got any food. Could you gather some for us? " +\
+        ("We haven't got any food. Could you gather some for us? " +\
         "We didn't have time to grab any before we went into hiding.\""),
 
-        _("\"Do you remember seeing any food in your travels?\"}}"),
+        ("\"Do you remember seeing any food in your travels?\"}}"),
 
-        _("\n...ah! You have all that food in your {{bb:kitchen}}! " +\
+        ("\n...ah! You have all that food in your {{bb:kitchen}}! " +\
         "We could give that to this family."),
 
-        _("\nStart by {{lb:moving}} the {{bb:basket}} to {{bb:~}}. " +\
+        ("\nStart by {{lb:moving}} the {{bb:basket}} to {{bb:~}}. " +\
         "Use the command {{yb:mv basket ~/}}\n")
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -45,7 +45,7 @@ class Step1(StepTemplateMv):
         "mv basket/ ../../"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:mv basket ~/}} " +\
+        ("{{rb:Use the command}} {{yb:mv basket ~/}} " +\
         "{{rb:to move the}} {{bb:basket}} {{rb:to the windy road}} {{bb:~}}")
     ]
 
@@ -58,7 +58,7 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        _("Now follow the {{bb:basket}}. Use {{yb:cd}} by itself " +\
+        ("Now follow the {{bb:basket}}. Use {{yb:cd}} by itself " +\
         "to {{lb:go}} to the windy road Tilde {{bb:~}}.\n")
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -69,7 +69,7 @@ class Step2(StepTemplateMv):
         "cd ~/"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:cd}} {{rb:by itself " +\
+        ("{{rb:Use the command}} {{yb:cd}} {{rb:by itself " +\
         "to move yourself to the road ~}}")
     ]
 
@@ -82,7 +82,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        _("You are now back on the long windy road. {{lb:Look around}} " +\
+        ("You are now back on the long windy road. {{lb:Look around}} " +\
         "with {{yb:ls}} to check that you have your {{bb:basket}} with you.\n")
     ]
 
@@ -92,7 +92,7 @@ class Step3(StepTemplateMv):
         "ls"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:by itself to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:by itself to look around.}}")
     ]
 
     def __next__(self):
@@ -101,10 +101,10 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        _("You have your {{bb:basket}} safely alongside you, and " +\
+        ("You have your {{bb:basket}} safely alongside you, and " +\
         "you see {{bb:my-house}} close by."),
-        _("Move the {{bb:basket}} to {{bb:my-house/kitchen}}."),
-        _("Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n")
+        ("Move the {{bb:basket}} to {{bb:my-house/kitchen}}."),
+        ("Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n")
     ]
 
     start_dir = "~"
@@ -120,7 +120,7 @@ class Step4(StepTemplateMv):
         "mv basket/ ~/my-house/kitchen/"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:mv basket my-house/kitchen/}} " +\
+        ("{{rb:Use}} {{yb:mv basket my-house/kitchen/}} " +\
         "{{rb:to move the basket to your kitchen.}}"),
     ]
 
@@ -133,7 +133,7 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        _("Now {{lb:go}} into {{bb:my-house/kitchen}} using {{yb:cd}}.\n"),
+        ("Now {{lb:go}} into {{bb:my-house/kitchen}} using {{yb:cd}}.\n"),
     ]
 
     start_dir = "~"
@@ -145,7 +145,7 @@ class Step5(StepTemplateMv):
         "cd ~/my-house/kitchen/"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cd my-house/kitchen}} " +\
+        ("{{rb:Use}} {{yb:cd my-house/kitchen}} " +\
         "{{rb:to go to your kitchen.}}"),
     ]
 

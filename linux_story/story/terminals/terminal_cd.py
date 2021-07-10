@@ -35,14 +35,14 @@ class TerminalCd(TerminalCat):
             if not not_locked(new_path):
                 self._set_command_blocked(True)
                 print((
-                    _("bash: cd: " + line + ": Permission denied")
+                    ("bash: cd: " + line + ": Permission denied")
                 ))
             elif new_path:
                 self._location.set_real_path(new_path)
                 self._set_prompt()
         else:
             self._set_command_blocked(True)
-            print((_("Nice try! But you entered an unexpected destination path.")))
+            print((("Nice try! But you entered an unexpected destination path.")))
 
     def complete_cd(self, text, line, begidx, endidx):
         try:

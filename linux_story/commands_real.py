@@ -65,7 +65,10 @@ def ls(real_loc, line, has_access=True):
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     orig_output, err = p.communicate()
-
+    if type(orig_output) != str:
+        orig_output = orig_output.decode()
+    if type(err) != str:
+        err = err.decode()
     # The error will need to be edited if it contains info about the edited
     # filename
     if err:
@@ -74,7 +77,10 @@ def ls(real_loc, line, has_access=True):
         return err
 
     # Need to filter output
-    files = orig_output.split('\n')
+    if type(orig_output) != str:
+        files = (orig_output).decode().split('\n')
+    else:
+        files = (orig_output).split('\n')
     coloured_files = []
     output = " ".join(files)
 
@@ -127,7 +133,8 @@ def shell_command(real_loc, line, command_word=""):
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     stdout, stderr = p.communicate()
-
+    stdout = stdout.decode()
+    stderr = stderr.decode()
     if stderr:
         print((stderr.strip().replace(fake_home_dir, '~')))
         return False
@@ -164,7 +171,8 @@ def launch_application(real_path, line, command_word=""):
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
-
+    stdout = stdout.decode()
+    stderr = stderr.decode()
     if stdout:
         print((stdout.strip()))
 
@@ -209,7 +217,8 @@ def nano(real_path, line):
     cmd = 'LINES= COLUMNS= ' + nano_filepath + " " + line
     p = subprocess.Popen(cmd, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
-
+    stdout = stdout.decode()
+    stderr = stderr.decode()
     if stdout:
         print((stdout.strip()))
 
@@ -234,7 +243,8 @@ def run_executable(real_path, line):
 
     p = subprocess.Popen(["sh", line], cwd=real_path)
     stdout, stderr = p.communicate()
-
+    stdout = stdout.decode()
+    stderr = stderr.decode()
     # notifying the SoundManager about the script that was just run
     script_name = line.split()[0]
     sounds_manager.on_command_run([script_name])

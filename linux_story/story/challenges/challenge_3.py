@@ -15,14 +15,14 @@ class StepTemplateCat(StepTemplate):
 
 class Step1(StepTemplateCat):
     story = [
-        _("Love it! Put it on quickly."),
-        _("There's loads more interesting stuff in your room.\n"),
-        _("Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n")
+        ("Love it! Put it on quickly."),
+        ("There's loads more interesting stuff in your room.\n"),
+        ("Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls shelves", "ls shelves/"]
-    hints = [_("{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}")]
+    hints = [("{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}")]
 
     def __next__(self):
         return 3, 2
@@ -30,15 +30,15 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        _("Did you know you can use the {{ob:TAB}} key to speed up your typing?"),
-        _("Try it by checking out that {{bb:comic book}}.\n"),
-        _("{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"),
-        _("Press the {{ob:TAB}} key before you've finished typing!\n")
+        ("Did you know you can use the {{ob:TAB}} key to speed up your typing?"),
+        ("Try it by checking out that {{bb:comic book}}.\n"),
+        ("{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"),
+        ("Press the {{ob:TAB}} key before you've finished typing!\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat shelves/comic-book"
-    hints = [_("{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}")]
+    hints = [("{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}")]
 
     def __next__(self):
         return 3, 3
@@ -46,14 +46,14 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        _("Why is it covered in pawprints?"),
-        _("Hang on, can you see that? There's a {{bb:note}} amongst your books.\n"),
-        _("{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n")
+        ("Why is it covered in pawprints?"),
+        ("Hang on, can you see that? There's a {{bb:note}} amongst your books.\n"),
+        ("{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat shelves/note"
-    hints = [_("{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}")]
+    hints = [("{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}")]
 
     def __next__(self):
         return 4, 1

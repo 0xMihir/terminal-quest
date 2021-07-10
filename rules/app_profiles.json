@@ -1,0 +1,62 @@
+{
+    "kano-video": {
+    "max_level": 3
+    },
+    "make-minecraft": {
+    "dir": "Minecraft-content",
+    "ext": "xml",
+    "cmd": "/usr/bin/make-minecraft \"{fullpath}\"",
+    "max_level": 13,
+    "icon": "minecraft.png"
+    },
+    "make-music": {
+    "dir": "Music-content",
+    "ext": "spi",
+    "cmd": "/usr/bin/make-music \"{fullpath}\"",
+    "max_level": 3,
+    "icon": "sonicpi.png"
+    },
+    "make-pong": {
+    "dir": "Pong-content",
+    "ext": "xml",
+    "cmd": "/usr/bin/make-pong \"{fullpath}\"",
+    "max_level": 16,
+    "icon": "pong.png"
+    },
+    "kano-draw": {
+    "dir": "Draw-content",
+    "ext": "draw",
+    "cmd": "/usr/bin/kano-draw \"{fullpath}\"",
+    "max_level": 9,
+    "icon": "draw.png"
+    },
+    "make-snake": {
+    "dir": "Snake-content",
+    "ext": "xml",
+    "cmd": "kano-launcher \"rxvt -title \\\"Make Snake\\\" -e python /usr/share/make-snake -t {filename}\" \"make-snake\"",
+    "max_level": 9,
+    "icon": "snake.png"
+    },
+    "linux-story": {
+    "cmd": "/usr/bin/linux-story-gui \"{fullpath}\"",
+    "max-level": 46,
+    "icon": "linux-story.png"
+    },
+    "make-light": {
+    "dir": "Light-content",
+    "cmd": "/usr/bin/make-light \"{fullpath}\"",
+    "ext": "lightcode"
+    },
+    "kano-overworld": {
+    "dir": ".local/share/love/kanoOverworld/sync"
+    },
+    "kano-tracker": {
+    "private": true
+    },
+    "kano-hardware": {
+    "private": true
+    },
+    "kano-avatar-registration": {
+    "private": true
+    }
+    }
