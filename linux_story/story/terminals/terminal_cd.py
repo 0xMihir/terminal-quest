@@ -48,7 +48,7 @@ class TerminalCd(TerminalCat):
         try:
             return self._autocomplete_files(text, line, begidx, endidx, only_dirs=True)
         except Exception as e:
-            print(str(e))
+            print((str(e)))
 
     def __check_cd(self, line):
         """If returns True, that means that cd will bring the user closer

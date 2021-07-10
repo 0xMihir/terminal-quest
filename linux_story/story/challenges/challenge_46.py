@@ -41,7 +41,7 @@ class Step1(StepTemplateRm):
 
     def block_command(self, line):
         if line == "rm Rabbit":
-            print(_("The rabbit dodged the attack!"))
+            print((_("The rabbit dodged the attack!")))
             return True
         return StepTemplateRm.block_command(self, line)
 

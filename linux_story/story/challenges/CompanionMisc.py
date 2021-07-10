@@ -7,7 +7,7 @@ bernard_text = _("Bernard stopped you looking in the basement!")
 
 def bernard_autocomplete(completions):
     if "photocopier.sh" in completions:
-        print("\n" + bernard_text)
+        print(("\n" + bernard_text))
         return []
     else:
         return completions

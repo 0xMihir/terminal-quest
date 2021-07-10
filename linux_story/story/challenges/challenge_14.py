@@ -90,8 +90,8 @@ class Step2(StepTemplateMv):
 
         else:
             # print a message in the terminal to show that it failed
-            print(_("If you do not add the basket at the end of the command, " +\
-                    "you will rename the items!"))
+            print((_("If you do not add the basket at the end of the command, " +\
+                    "you will rename the items!")))
 
         return should_block
 

@@ -8,7 +8,6 @@
 
 import os
 import getpass
-from kano.logging import logger
 
 from linux_story.common import tq_file_system, fake_home_dir
 from linux_story.helper_functions import debugger
@@ -17,7 +16,7 @@ from linux_story.helper_functions import debugger
 def cd(real_path, line, has_access=True):
     if not has_access:
         # Could simplify this to "Permission denied"
-        print("-bash: cd: {}: Permission denied".format(line))
+        print(("-bash: cd: {}: Permission denied".format(line)))
         return
 
     if not line:

@@ -30,7 +30,7 @@ class TerminalRabbit(TerminalChmod):
     def _autocomplete_files(self, text, line, begidx, endidx, only_dirs=False, only_exe=False):
         completions = TerminalChmod._autocomplete_files(self, text, line, begidx, endidx, only_dirs, only_exe)
         if "cage/" in completions or "Mum" in completions:
-            print("\n" + RABBIT_BLOCKING_RABBITHOLE)
+            print(("\n" + RABBIT_BLOCKING_RABBITHOLE))
             return []
         else:
             return completions

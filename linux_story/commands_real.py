@@ -31,7 +31,7 @@ def ls(real_loc, line, has_access=True):
     '''
 
     if not has_access:
-        print("ls: cannot open directory {}: Permission denied".format(line))
+        print(("ls: cannot open directory {}: Permission denied".format(line)))
         return
 
     new_loc = real_loc
@@ -129,7 +129,7 @@ def shell_command(real_loc, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print(stderr.strip().replace(fake_home_dir, '~'))
+        print((stderr.strip().replace(fake_home_dir, '~')))
         return False
 
     if stdout:
@@ -137,7 +137,7 @@ def shell_command(real_loc, line, command_word=""):
             print(stdout)
 
         else:
-            print(stdout.strip())
+            print((stdout.strip()))
 
     # notifying the SoundManager about the command that was run
     sounds_manager.on_command_run(args)
@@ -166,10 +166,10 @@ def launch_application(real_path, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stdout:
-        print(stdout.strip())
+        print((stdout.strip()))
 
     if stderr:
-        print(stderr.strip())
+        print((stderr.strip()))
 
 
 def turn_abs_path_to_real_loc(path):
@@ -211,10 +211,10 @@ def nano(real_path, line):
     stdout, stderr = p.communicate()
 
     if stdout:
-        print(stdout.strip())
+        print((stdout.strip()))
 
     if stderr:
-        print(stderr.strip())
+        print((stderr.strip()))
 
 
 def run_executable(real_path, line):
@@ -240,7 +240,7 @@ def run_executable(real_path, line):
     sounds_manager.on_command_run([script_name])
 
     if stdout:
-        print(stdout.strip())
+        print((stdout.strip()))
 
     if stderr:
-        print(stderr.strip())
+        print((stderr.strip()))
