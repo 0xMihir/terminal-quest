@@ -59,7 +59,7 @@ house = {
         {
             "challenge": 33,
             "step": 32,
-            "permissions": 0700,
+            "permissions": 0o700,
         }
     ]
 }

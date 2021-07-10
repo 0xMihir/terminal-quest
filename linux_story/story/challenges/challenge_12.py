@@ -50,7 +50,7 @@ class Step1(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 12, 2
 
 
@@ -84,11 +84,11 @@ class Step2(StepTemplateMv):
 
     def check_command(self, line):
         line = line.strip()
-        if line in self.all_commands.keys():
+        if line in list(self.all_commands.keys()):
             hint = self.all_commands[line]
             self.send_hint(hint)
             return
         return StepTemplateMv.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 13, 1

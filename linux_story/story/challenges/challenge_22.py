@@ -42,7 +42,7 @@ class Step1(StepTemplateMkdir):
         "~/town/.hidden-shelter/apple"
     ]
 
-    def next(self):
+    def __next__(self):
         return 22, 2
 
 
@@ -67,7 +67,7 @@ class Step2(StepTemplateMkdir):
         "~/town/.hidden-shelter/Edith"
     ]
 
-    def next(self):
+    def __next__(self):
         return 22, 3
 
 
@@ -93,7 +93,7 @@ class Step3(StepTemplateMkdir):
         "~/town/.hidden-shelter/Edward"
     ]
 
-    def next(self):
+    def __next__(self):
         return 22, 4
 
 
@@ -134,7 +134,7 @@ class Step4(StepTemplateMkdir):
         else:
             return StepTemplateMkdir.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 22, 5
 
 
@@ -153,5 +153,5 @@ class Step5(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 23, 1

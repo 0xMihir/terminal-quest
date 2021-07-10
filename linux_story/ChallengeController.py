@@ -25,7 +25,7 @@ class ChallengeController:
         step_instance = StepClass(self.__message_client)
         self.__send_start_challenge_data(step_instance, step_instance.TerminalClass.terminal_commands, challenge)
         step_instance.run()
-        (new_challenge, new_step) = step_instance.next()
+        (new_challenge, new_step) = next(step_instance)
 
         while not step_instance.is_finished_game():
             StepClass = get_step_class(new_challenge, new_step)
@@ -34,13 +34,13 @@ class ChallengeController:
             self.__save_challenge(new_challenge, challenge)
             challenge = new_challenge
             step_instance.run()
-            (new_challenge, new_step) = step_instance.next()
+            (new_challenge, new_step) = next(step_instance)
 
     def __run_step(self, StepClass, challenge):
         step_instance = StepClass(self.__message_client)
         self.__send_start_challenge_data(step_instance, step_instance.TerminalClass.terminal_commands, challenge)
         step_instance.run()
-        (new_challenge, new_step) = step_instance.next()
+        (new_challenge, new_step) = next(step_instance)
         return new_challenge, new_step, step_instance
 
     @staticmethod

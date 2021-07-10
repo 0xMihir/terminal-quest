@@ -29,7 +29,7 @@ class Step1(StepTemplateCd):
     hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/grumpy-man"]
 
-    def next(self):
+    def __next__(self):
         return 8, 2
 
 
@@ -48,7 +48,7 @@ class Step2(StepTemplateCd):
     hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/little-boy"]
 
-    def next(self):
+    def __next__(self):
         return 8, 3
 
 
@@ -67,7 +67,7 @@ class Step3(StepTemplateCd):
     hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/young-girl"]
 
-    def next(self):
+    def __next__(self):
         return 8, 4
 
 
@@ -82,7 +82,7 @@ class Step4(StepTemplateCd):
     commands = "cat Mayor"
     hints = [_("{{rb:Use}} {{yb:cat Mayor}} {{rb:to talk to the Mayor.}}")]
 
-    def next(self):
+    def __next__(self):
         return 8, 5
 
 
@@ -106,7 +106,7 @@ class Step5(StepTemplateCd):
         }
     ]
 
-    def next(self):
+    def __next__(self):
         return 8, 6
 
 
@@ -121,5 +121,5 @@ class Step6(StepTemplateCd):
     commands = "cat note"
     hints = [_("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")]
 
-    def next(self):
+    def __next__(self):
         return 9, 1

@@ -31,61 +31,61 @@ class Step1(StepTemplateNano):
     file_list = [
         {
             "path": "~/woods/cave/sign",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("sign_cave")
         },
 
         {
             "path": "~/woods/cave/dark-room",
-            "permissions": 0300,
+            "permissions": 0o300,
             "type": "directory"
         },
         {
             "path": "~/woods/cave/dark-room/sign",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("x-sign")
         },
 
         {
             "path": "~/woods/cave/cage",
-            "permissions": 0500,
+            "permissions": 0o500,
             "type": "directory"
         },
         {
             "path": "~/woods/cave/cage/bird",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("bird")
         },
         {
             "path": "~/woods/cave/cage/sign",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("r-sign")
         },
 
         {
             "path": "~/woods/cave/locked-room/",
-            "permissions": 0600,
+            "permissions": 0o600,
             "type": "directory"
         },
         {
             "path": "~/woods/cave/locked-room/lighter",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("lighter")
         },
         {
             "path": "~/woods/cave/locked-room/sign",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("w-sign"),
         }
     ]
 
-    def next(self):
+    def __next__(self):
         return 33, 2
 
 
@@ -111,7 +111,7 @@ class Step2(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 33, 3
 
 
@@ -144,7 +144,7 @@ class Step3(StepTemplateNano):
         "ls": _("Try examining the individual items with {{lb:cat}}.")
     }
 
-    def next(self):
+    def __next__(self):
         return 33, 4
 
 
@@ -166,7 +166,7 @@ class Step4(StepTemplateNano):
         "echo knock knock"
     ]
 
-    def next(self):
+    def __next__(self):
         return 33, 5
 
 
@@ -187,7 +187,7 @@ class Step5(StepTemplateNano):
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
 
-    def next(self):
+    def __next__(self):
         if self._last_user_input.lower() == "secret" or self._last_user_input.lower() == "echo secret":
             return 33, 6
         else:
@@ -202,7 +202,7 @@ class Step6(StepTemplateNano):
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
 
-    def next(self):
+    def __next__(self):
         return 33, 7
 
 
@@ -228,7 +228,7 @@ class Step7(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 33, 8
 
 
@@ -252,7 +252,7 @@ class Step8(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 33, 9
 
 
@@ -272,5 +272,5 @@ class Step9(StepTemplateNano):
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 34, 1

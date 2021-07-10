@@ -75,7 +75,7 @@ class Step1(StepPeopleInCage):
         _("{{rb:Look around with}} {{yb:ls}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 45, 2
 
 
@@ -97,7 +97,7 @@ class Step2(StepPeopleInCage):
         "ls cage/"
     ]
 
-    def next(self):
+    def __next__(self):
         return 45, 3
 
 
@@ -118,7 +118,7 @@ class Step3(StepPeopleInCage):
         "cat cage/Swordmaster"
     ]
 
-    def next(self):
+    def __next__(self):
         return 45, 4
 
 
@@ -138,7 +138,7 @@ class Step4(StepPeopleInCage):
         "cat bell"
     ]
 
-    def next(self):
+    def __next__(self):
         return 45, 5
 
 
@@ -163,7 +163,7 @@ class Step5(StepPeopleInCage):
             return True
         self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 45, 6
 
 
@@ -185,7 +185,7 @@ class Step6(StepPeopleInCage):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 45, 7
 
 
@@ -203,5 +203,5 @@ class Step7(StepTemplateRm):
         _("{{rb:Use}} {{yb:ls ~/town}} {{rb:to check you moved everyone.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 46, 1

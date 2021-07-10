@@ -34,7 +34,7 @@ class Step1(StepTemplateNano):
         },
         {
             "path": "~/woods/clearing/signpost",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file",
             "contents": get_story_file("signpost")
         },
@@ -48,7 +48,7 @@ class Step1(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 32, 2
 
 
@@ -66,7 +66,7 @@ class Step2(StepTemplateNano):
         _("{{rb:Look around using}} {{yb:ls}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 32, 3
 
 
@@ -84,7 +84,7 @@ class Step3(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 32, 4
 
 
@@ -103,7 +103,7 @@ class Step4(StepTemplateNano):
         _("{{rb:Look around using}} {{yb:ls}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 32, 5
 
 
@@ -125,7 +125,7 @@ class Step5(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 33, 1
 
 

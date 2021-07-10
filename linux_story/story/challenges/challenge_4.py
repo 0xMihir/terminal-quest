@@ -49,7 +49,7 @@ class Step1(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 4, 2
 
 
@@ -71,7 +71,7 @@ class Step2(StepTemplateCd):
     ]
     deleted_items = ['~/my-house/garden/greenhouse/Dad']
 
-    def next(self):
+    def __next__(self):
         return 4, 3
 
 
@@ -91,7 +91,7 @@ class Step3(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 4, 4
 
 
@@ -105,7 +105,7 @@ class Step4(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
-    def next(self):
+    def __next__(self):
         return 4, 5
 
 
@@ -119,5 +119,5 @@ class Step5(StepTemplateCd):
     commands = "cat Mum"
     hints = [_("{{rb:Stuck? Type:}} {{yb:cat Mum}}{{rb:. Don\'t forget the capital letter!}}")]
 
-    def next(self):
+    def __next__(self):
         return 5, 1

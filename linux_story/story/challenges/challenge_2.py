@@ -41,7 +41,7 @@ class Step1(StepCat):
     highlighted_commands = ['cat']
     hints = [_("{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}")]
 
-    def next(self):
+    def __next__(self):
         return 2, 2
 
 
@@ -58,7 +58,7 @@ class Step2(StepCat):
         _("{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 2, 3
 
 
@@ -74,7 +74,7 @@ class Step3(StepCat):
         _("{{rb:Type}} {{yb:cat wardrobe/t-shirt}} {{rb:to investigate how it looks.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 2, 4
 
 
@@ -105,7 +105,7 @@ class Step4(StepCat):
 
         return StepCat.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 2, 5
 
 
@@ -125,5 +125,5 @@ class Step5(StepCat):
 
     last_step = True
 
-    def next(self):
+    def __next__(self):
         return 3, 1

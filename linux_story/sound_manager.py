@@ -117,7 +117,7 @@ class SoundManager(object):
             story_text (str) - an excerpt of the story text in the challenges
         """
 
-        for key_words, sound_name in self.story_text_sound.items():
+        for key_words, sound_name in list(self.story_text_sound.items()):
             if story_text.startswith(key_words):
                 try:
                     self.play_sound(sound_name)

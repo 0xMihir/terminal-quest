@@ -61,7 +61,7 @@ def get_step_class(challenge_number, step_number):
             -1
         )
     except ImportError as detail:
-        print 'Import error = {}, module_name = {}'.format(detail, module_name)
+        print('Import error = {}, module_name = {}'.format(detail, module_name))
         sys.exit(0)
     else:
         return getattr(module, step_class_name)

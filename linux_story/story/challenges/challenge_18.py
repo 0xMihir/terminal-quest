@@ -35,7 +35,7 @@ class Step1(StepTemplateEcho):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 18, 2
 
 
@@ -54,7 +54,7 @@ class Step2(StepTemplateEcho):
     start_dir = '~'
     end_dir = '~'
 
-    def next(self):
+    def __next__(self):
         return 18, 3
 
 
@@ -73,7 +73,7 @@ class Step3(StepTemplateEcho):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 18, 4
 
 
@@ -88,7 +88,7 @@ class Step4(StepTemplateEcho):
     end_dir = "~/farm"
     hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
 
-    def next(self):
+    def __next__(self):
         return 18, 5
 
 
@@ -134,7 +134,7 @@ class Step5(StepTemplateEcho):
         if "mv" in line:
             return True
 
-    def next(self):
+    def __next__(self):
         return 18, 6
 
 
@@ -154,7 +154,7 @@ class Step6(StepTemplateEcho):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 18, 7
 
 
@@ -195,7 +195,7 @@ class Step7(StepTemplateEcho):
         end_dir_validated = self.get_fake_path() == self.end_dir
 
         # if the validation is included
-        if self._last_user_input in self.all_commands.keys() and \
+        if self._last_user_input in list(self.all_commands.keys()) and \
                 end_dir_validated:
 
             # Print hint from person
@@ -215,11 +215,11 @@ class Step7(StepTemplateEcho):
         else:
             if not self.hints:
                 self.hints = [
-                    _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
+                    _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % list(self.all_commands.keys())[0]
                 ]
             self.send_stored_hint()
             self.hints.pop()
         return False
 
-    def next(self):
+    def __next__(self):
         return 19, 1

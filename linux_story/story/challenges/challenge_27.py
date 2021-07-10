@@ -42,7 +42,7 @@ class Step1(StepTemplateMkdir):
         _("Eleanor: {{Bb:\"Achoo! This place is really dusty...*sniff*\"}}")
     )
 
-    def next(self):
+    def __next__(self):
         return 27, 2
 
 
@@ -87,7 +87,7 @@ class Step2(StepTemplateNano):
     def check_nano_contents(self):
         return self._nano.check_nano_content_default()
 
-    def next(self):
+    def __next__(self):
         return 27, 3
 
 
@@ -109,7 +109,7 @@ class Step3(StepTemplateNano):
         _("{{rb:Use}} {{yb:./best-horn-in-the-world.sh}} {{rb:to run the script.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 27, 4
 
 
@@ -169,7 +169,7 @@ class Step4(StepTemplateNano):
         else:
             return StepTemplateNano.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 27, 5
 
 
@@ -201,5 +201,5 @@ class Step5(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 28, 1

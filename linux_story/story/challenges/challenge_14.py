@@ -33,7 +33,7 @@ class Step1(StepTemplateMv):
         _("{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} {{rb:the kitchen.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 14, 2
 
 
@@ -90,8 +90,8 @@ class Step2(StepTemplateMv):
 
         else:
             # print a message in the terminal to show that it failed
-            print _("If you do not add the basket at the end of the command, " +\
-                    "you will rename the items!")
+            print(_("If you do not add the basket at the end of the command, " +\
+                    "you will rename the items!"))
 
         return should_block
 
@@ -136,7 +136,7 @@ class Step2(StepTemplateMv):
         else:
             return False
 
-    def next(self):
+    def __next__(self):
         return 14, 3
 
 
@@ -161,7 +161,7 @@ class Step3(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 14, 4
 
 
@@ -184,7 +184,7 @@ class Step4(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 14, 5
 
 
@@ -214,7 +214,7 @@ class Step5(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 14, 6
 
 
@@ -239,7 +239,7 @@ class Step6(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 14, 7
 
 
@@ -273,11 +273,11 @@ class Step7(StepTemplateMv):
         if not self.allowed_commands:
             return True
 
-        if line in self.allowed_commands.keys():
+        if line in list(self.allowed_commands.keys()):
 
             hint = self.allowed_commands[line]
             del self.allowed_commands[line]
-            num_people = len(self.allowed_commands.keys())
+            num_people = len(list(self.allowed_commands.keys()))
 
             if num_people == 0:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
@@ -289,9 +289,9 @@ class Step7(StepTemplateMv):
                 else:
                     hint += _("\n{{gb:Check on}} {{yb:1}} {{gb:other}}")
         else:
-            hint = _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.allowed_commands.keys()[0]
+            hint = _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % list(self.allowed_commands.keys())[0]
 
         self.send_hint(hint)
 
-    def next(self):
+    def __next__(self):
         return 15, 1

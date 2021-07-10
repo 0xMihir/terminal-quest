@@ -30,7 +30,7 @@ class Step1(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 9, 2
 
 
@@ -58,7 +58,7 @@ class Step2(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 9, 3
 
 
@@ -73,7 +73,7 @@ class Step3(StepTemplateCd):
         _("{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it should be.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 9, 4
 
 
@@ -88,5 +88,5 @@ class Step4(StepTemplateCd):
     commands = "cat note"
     hints = [_("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")]
 
-    def next(self):
+    def __next__(self):
         return 10, 1

@@ -64,7 +64,7 @@ class Step1(StepTemplateEcho):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 20, 2
 
 
@@ -98,7 +98,7 @@ class Step2(StepTemplateEcho):
     ]
     deleted_items = ["~/farm/barn/Ruth"]
 
-    def next(self):
+    def __next__(self):
         return 20, 3
 
 
@@ -121,7 +121,7 @@ class Step3(StepTemplateEcho):
         "cat MKDIR"
     ]
 
-    def next(self):
+    def __next__(self):
         return 20, 4
 
 
@@ -156,7 +156,7 @@ class Step4(StepTemplateMkdir):
 
         return StepTemplateMkdir.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 20, 5
 
 
@@ -176,5 +176,5 @@ class Step5(StepTemplateMkdir):
         _("{{rb:Look around using}} {{yb:ls}}{{rb:.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 21, 1

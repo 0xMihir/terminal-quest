@@ -27,7 +27,7 @@ class Step1(StepTemplateChmod):
         "cat Swordmaster"
     ]
 
-    def next(self):
+    def __next__(self):
         return 39, 2
 
 
@@ -61,7 +61,7 @@ class Step2(StepTemplateChmod):
 
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 39, 3
 
 
@@ -98,7 +98,7 @@ class Step3(StepTemplateChmod):
 
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 39, 4
 
 
@@ -127,7 +127,7 @@ class Step4(StepTemplateChmod):
             )
         return StepTemplateChmod.check_command(self, last_user_input)
 
-    def next(self):
+    def __next__(self):
         return 39, 5
 
 
@@ -148,12 +148,12 @@ class Step5(StepTemplateChmod):
         {
             "contents": get_story_file("note_swordsmaster-house"),
             "path": "~/woods/clearing/house/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
 
-    def next(self):
+    def __next__(self):
         return 39, 6
 
 
@@ -171,5 +171,5 @@ class Step6(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
 
-    def next(self):
+    def __next__(self):
         return 40, 1

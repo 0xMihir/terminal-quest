@@ -46,5 +46,5 @@ class Step1(StepLs):
         sound_manager = SoundManager()
         sound_manager.play_sound('alarm')
 
-    def next(self):
+    def __next__(self):
         return 2, 1

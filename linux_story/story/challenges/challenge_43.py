@@ -40,7 +40,7 @@ class Step1(StepTemplateChmod):
         {
             "path": "~/town/east/library/private-section/Swordmaster",
             "contents": get_story_file("swordmaster"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -56,7 +56,7 @@ class Step1(StepTemplateChmod):
     def _run_at_start(self):
         modify_permissions("~/woods/thicket/rabbithole", 0000)
 
-    def next(self):
+    def __next__(self):
         if self._last_user_input == "echo 2":
             return 43, 100
         else:
@@ -91,7 +91,7 @@ class Step100(StepTemplateChmod):
             return
         return StepTemplateChmod.check_command(self, last_user_input)
 
-    def next(self):
+    def __next__(self):
         return 43, 2
 
 
@@ -122,14 +122,14 @@ class Step2(StepTemplateChmod):
             "path": "~/town/east/library/private-section/sword",
             "contents": get_story_file("RM-sword"),
             "type": "file",
-            "permissions": 0644
+            "permissions": 0o644
         }
     ]
     dark_theme = True
 
     deleted_items = ["~/town/east/library/private-section/Swordmaster"]
 
-    def next(self):
+    def __next__(self):
         return 43, 3
 
 
@@ -151,7 +151,7 @@ class Step3(StepTemplateChmod):
         _("{{rb:Use}} {{yb:cat sword}} {{rb:to examine it.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 43, 4
 
 
@@ -183,7 +183,7 @@ class Step4(StepTemplateRm):
     ]
     dark_theme = True
 
-    def next(self):
+    def __next__(self):
         return 43, 5
 
 
@@ -202,5 +202,5 @@ class Step5(StepTemplateRm):
     ]
     dark_theme = True
 
-    def next(self):
+    def __next__(self):
         return 44, 1

@@ -56,7 +56,7 @@ class Step1(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 21, 2
 
 
@@ -100,7 +100,7 @@ class Step2(StepTemplateMkdir):
         else:
             self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 21, self.__next_step
 
 
@@ -138,7 +138,7 @@ class Step3(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_commands_with_mkdir_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 21, 4
 
 
@@ -167,7 +167,7 @@ class Step4(StepTemplateMkdir):
         else:
             return StepTemplateMkdir.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 21, 5
 
 
@@ -205,7 +205,7 @@ class Step5(StepTemplateMkdir):
         else:
             self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 21, 6
 
 
@@ -233,7 +233,7 @@ class Step6(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_commands_with_mkdir_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 21, 7
 
 
@@ -253,7 +253,7 @@ class Step7(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter is hidden.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 21, 8
 
 
@@ -271,7 +271,7 @@ class Step8(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 21, 9
 
 
@@ -347,7 +347,7 @@ class Step9(StepTemplateMkdir):
         # emptied
         return False
 
-    def next(self):
+    def __next__(self):
         return 21, 10
 
 
@@ -364,7 +364,7 @@ class Step10(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 21, 11
 
 
@@ -382,5 +382,5 @@ class Step11(StepTemplateMkdir):
         _("{{rb:Look around using}} {{yb:ls}}{{rb:.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 22, 1

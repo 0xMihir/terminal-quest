@@ -38,7 +38,7 @@ class Step1(StepTemplateRm):
         {
             "path": "~/town/east/library/rabbithole/Swordmaster",
             "contents": get_story_file("swordmaster"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -46,7 +46,7 @@ class Step1(StepTemplateRm):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 44, 2
 
 
@@ -70,7 +70,7 @@ class Step2(StepTemplateRm):
     ]
     dark_theme = True
 
-    def next(self):
+    def __next__(self):
         return 44, 3
 
 
@@ -96,7 +96,7 @@ class Step3(StepTemplateRm):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 44, 4
 
 
@@ -122,7 +122,7 @@ class Step4(StepTemplateRm):
             return True
         self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 44, 5
 
 
@@ -148,73 +148,73 @@ class Step5(StepTemplateRm):
             "path": "~/woods/thicket/rabbithole/bell",
             "type": "file",
             "contents": get_story_file("bell"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/Rabbit",
             "type": "file",
             "contents": get_story_file("Rabbit"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Mum",
             "type": "file",
             "contents": get_story_file("Mum"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Dad",
             "type": "file",
             "contents": get_story_file("Dad"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/dog",
             "type": "file",
             "contents": get_story_file("dog"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Edith",
             "type": "file",
             "contents": get_story_file("Edith"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Edward",
             "type": "file",
             "contents": get_story_file("Edward"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/grumpy-man",
             "type": "file",
             "contents": get_story_file("grumpy-man-fixed"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Mayor",
             "type": "file",
             "contents": get_story_file("Mayor"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/young-girl",
             "type": "file",
             "contents": get_story_file("young-girl"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/little-boy",
             "type": "file",
             "contents": get_story_file("little-boy"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Swordmaster",
             "contents": get_story_file("swordmaster-without-sword"),
             "type": "file",
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Bernard",
@@ -231,10 +231,10 @@ class Step5(StepTemplateRm):
     ]
 
     def _run_after_text(self):
-        modify_permissions("~/woods/thicket/rabbithole/cage", 0500)
+        modify_permissions("~/woods/thicket/rabbithole/cage", 0o500)
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 45, 1

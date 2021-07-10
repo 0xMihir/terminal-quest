@@ -47,7 +47,7 @@ class Step1(StepNano):
     ]
     companion_speech = _("Eleanor: {{Bb:......}}")
 
-    def next(self):
+    def __next__(self):
         return 30, 2
 
 
@@ -68,7 +68,7 @@ class Step2(StepNano):
         _("Eleanor: {{Bb:\"....I was so scared. I don't think I want to go " +\
         "outside now.\"}}")
 
-    def next(self):
+    def __next__(self):
         return 30, 3
 
 
@@ -113,7 +113,7 @@ class Step3(StepNano):
         else:
             return StepNano.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 30, 4
 
 
@@ -157,5 +157,5 @@ class Step4(StepNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 31, 1

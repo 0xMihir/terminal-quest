@@ -33,30 +33,30 @@ class Step1(StepTemplateChmod):
         {
             "contents": get_story_file("note_woods"),
             "path": "~/woods/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "contents": get_story_file("Rabbit"),
             "path": "~/woods/thicket/Rabbit",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "path": "~/woods/thicket/rabbithole",
-            "permissions": 0755,
+            "permissions": 0o755,
             "type": "directory"
         },
         {
             "contents": get_story_file("note_swordsmaster-clearing"),
             "path": "~/woods/clearing/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "contents": get_story_file("note_rabbithole"),
             "path": "~/woods/thicket/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -64,7 +64,7 @@ class Step1(StepTemplateChmod):
     def block_command(self, line):
         unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 40, 2
 
 
@@ -84,7 +84,7 @@ class Step2(StepTemplateChmod):
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 3
 
 
@@ -101,7 +101,7 @@ class Step3(StepTemplateChmod):
         _("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 4
 
 
@@ -120,7 +120,7 @@ class Step4(StepTemplateChmod):
     def block_command(self, line):
         unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 40, 5
 
 
@@ -140,7 +140,7 @@ class Step5(StepTemplateChmod):
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 6
 
 
@@ -157,7 +157,7 @@ class Step6(StepTemplateChmod):
         _("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 7
 
 
@@ -174,7 +174,7 @@ class Step7(StepTemplateChmod):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 40, 8
 
 
@@ -193,6 +193,6 @@ class Step8(StepTemplateChmod):
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 41, 1
 

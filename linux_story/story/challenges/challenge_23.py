@@ -33,11 +33,11 @@ class Step1(StepTemplateMkdir):
         {"path": "~/town/east/shed-shop/Bernard"},
         {
             "path": "~/town/east/shed-shop/best-shed-maker-in-the-world.sh",
-            "permissions": 0755
+            "permissions": 0o755
         },
         {
             "path": "~/town/east/shed-shop/best-horn-in-the-world.sh",
-            "permissions": 0755,
+            "permissions": 0o755,
             "contents": get_story_file("best-horn-in-the-world-incorrect.sh")
         },
         {"path": "~/town/east/shed-shop/basement/photocopier.sh"},
@@ -52,7 +52,7 @@ class Step1(StepTemplateMkdir):
         {"path": "~/town/east/restaurant/.cellar/Clara"}
     ]
 
-    def next(self):
+    def __next__(self):
         return 23, 2
 
 
@@ -87,7 +87,7 @@ class Step2(StepTemplateMkdir):
 
         self.send_hint(text)
 
-    def next(self):
+    def __next__(self):
         Step3.prev_command = self._last_user_input
         return 23, 3
 
@@ -149,7 +149,7 @@ class Step3(StepEleanorMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 23, 4
 
 
@@ -184,7 +184,7 @@ class Step4(StepEleanorMkdir):
         _("\nEleanor: {{Bb:Why are you looking at me? You should be looking over THERE.}}")
     )
 
-    def next(self):
+    def __next__(self):
         return 23, 5
 
 
@@ -212,5 +212,5 @@ class Step5(StepEleanorMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 24, 1

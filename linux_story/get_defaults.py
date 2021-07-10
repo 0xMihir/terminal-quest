@@ -128,10 +128,10 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
     draft_story_dict = {}
 
     # Go through the config file
-    for dict_id, data_dict in data_dict.iteritems():
+    for dict_id, data_dict in data_dict.items():
 
         # Filter relevent challenges in data_dict
-        if 'challenges' in data_dict.keys():
+        if 'challenges' in list(data_dict.keys()):
 
             # If the challenges go above the challenge we're
             # considering, we can immediately block it and
@@ -163,7 +163,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
             # If challenges in the data dictionary, remove all challenges
             # greater than the one we're considering now.
 
-            if name in draft_story_dict.keys():
+            if name in list(draft_story_dict.keys()):
                 # Analyse tree[name] and try and blend the
                 # two together.
 
@@ -196,7 +196,7 @@ def get_relevant_challenge(draft_story_dict):
     """
 
     story_dict = {}
-    for name, file_dict in draft_story_dict.iteritems():
+    for name, file_dict in draft_story_dict.items():
 
         # Check if 'challenges' is in the file_dict - if not, then this
         # file shouldn't be added to the dictionary
@@ -208,7 +208,7 @@ def get_relevant_challenge(draft_story_dict):
             # Go through the keys in the dictionary.  If the key is
             # 'challenges, filter the challenges.  Otherwise, just
             # copy them across
-            for key in file_dict.keys():
+            for key in list(file_dict.keys()):
                 if key == 'challenges':
                     challenge_array = file_dict['challenges']
 

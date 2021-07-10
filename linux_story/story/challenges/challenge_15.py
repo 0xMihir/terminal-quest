@@ -38,7 +38,7 @@ class Step1(StepTemplateMv):
         "ls -a"
     ]
 
-    def next(self):
+    def __next__(self):
         return 15, 2
 
 
@@ -61,7 +61,7 @@ class Step2(StepTemplateMv):
         "ls -a .tiny-chest/"
     ]
 
-    def next(self):
+    def __next__(self):
         return 15, 3
 
 
@@ -81,7 +81,7 @@ class Step3(StepTemplateMv):
         "cat .tiny-chest/MV"
     ]
 
-    def next(self):
+    def __next__(self):
         return 15, 4
 
 
@@ -109,7 +109,7 @@ class Step4(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 15, 5
 
 
@@ -137,5 +137,5 @@ class Step5(StepTemplateMv):
 
         return False
 
-    def next(self):
+    def __next__(self):
         return 16, 1

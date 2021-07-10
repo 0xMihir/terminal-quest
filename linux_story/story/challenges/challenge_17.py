@@ -64,7 +64,7 @@ class Step1(StepTemplateMv):
         "ls ../"
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 2
 
 
@@ -101,10 +101,10 @@ class Step2(StepTemplateMv):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         Step3()
 
-    def next(self):
+    def __next__(self):
         return 17, 3
 
 
@@ -127,7 +127,7 @@ class Step3(StepTemplateMv):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 17, 4
 
 
@@ -150,7 +150,7 @@ class Step4(StepTemplateMv):
         _("{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 5
 
 
@@ -178,7 +178,7 @@ class Step5(StepTemplateMv):
 
         return StepTemplateMv.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 17, 6
 
 
@@ -197,7 +197,7 @@ class Step6(StepTemplateMv):
         _("{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 7
 
 
@@ -223,5 +223,5 @@ class Step7(StepTemplateEcho):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
 
-    def next(self):
+    def __next__(self):
         return 18, 1

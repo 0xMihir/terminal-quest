@@ -38,7 +38,7 @@ class Step1(StepTemplateMv):
         _("{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 16, 2
 
 
@@ -62,7 +62,7 @@ class Step2(StepTemplateMv):
         _("{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 16, 3
 
 
@@ -86,7 +86,7 @@ class Step3(StepTemplateMv):
         'ls .chest -a'
     ]
 
-    def next(self):
+    def __next__(self):
         return 16, 4
 
 
@@ -107,5 +107,5 @@ class Step4(StepTemplateMv):
         "cat .chest/.note"
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 1

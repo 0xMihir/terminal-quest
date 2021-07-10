@@ -41,7 +41,7 @@ class Step1(StepTemplateRm):
 
     def block_command(self, line):
         if line == "rm Rabbit":
-            print _("The rabbit dodged the attack!")
+            print(_("The rabbit dodged the attack!"))
             return True
         return StepTemplateRm.block_command(self, line)
 
@@ -54,7 +54,7 @@ class Step1(StepTemplateRm):
 
         return StepTemplateRm.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         Animation("gong-being-removed").play_finite(1)
         self.send_normal_theme()
         Animation("rabbit-blinking").play_finite(1)
@@ -99,7 +99,7 @@ class Step2(StepTemplateRm):
             return False
         return StepTemplateRm.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 46, 3
 
 
@@ -129,7 +129,7 @@ class Step3(StepTemplateSudo):
         "{{rb:. If you've changed the password, try that here instead.}}"
     ]
 
-    def next(self):
+    def __next__(self):
         return 46, 4
 
 
@@ -154,7 +154,7 @@ class Step4(StepTemplateSudo):
         "{{rb:Use}} {{yb:sudo rm -r chest}} {{rb:to remove the chest and its contents.}}"
     ]
 
-    def next(self):
+    def __next__(self):
         return 46, 5
 
 
@@ -184,7 +184,7 @@ class Step5(StepTemplateSudo):
     def block_command(self, last_user_input):
         return unblock_cd_commands(last_user_input)
 
-    def next(self):
+    def __next__(self):
         return 46, 6
 
 
@@ -219,7 +219,7 @@ class Step6(StepTemplateSudo):
         "~/woods/thicket/rabbithole/Swordmaster"
     ]
 
-    def next(self):
+    def __next__(self):
         return 46, 7
 
 
@@ -284,12 +284,12 @@ class Step7(StepTemplateSudo):
 
         # check through list of commands
         self.hints = [
-            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
+            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % list(self.all_commands.keys())[0]
         ]
 
         end_dir_validated = self.get_fake_path() == self.end_dir
 
-        if (line in self.all_commands.keys()) and end_dir_validated:
+        if (line in list(self.all_commands.keys())) and end_dir_validated:
             hint = "\n" + self.all_commands[line]
             self.all_commands.pop(line, None)
 
@@ -304,7 +304,7 @@ class Step7(StepTemplateSudo):
         # emptied
         return False
 
-    def next(self):
+    def __next__(self):
         from kano_profile.badges import save_app_state_variable_with_dialog
         save_app_state_variable_with_dialog('linux-story', 'finished', 'challenge_46')
         self._is_finished = True

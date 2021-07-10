@@ -42,7 +42,7 @@ class Step1(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:The library is over there!}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 2
 
 
@@ -64,7 +64,7 @@ class Step2(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 26, 3
 
 
@@ -93,7 +93,7 @@ class Step3(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:It's all echo-y-y-y-y..}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 4
 
 
@@ -127,7 +127,7 @@ class Step4(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:What's in the private-section?}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 5
 
 
@@ -157,7 +157,7 @@ class Step5(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:What's in the public-section?}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 6
 
 
@@ -182,7 +182,7 @@ class Step6(StepTemplateMkdir):
         "fees.}}")
     )
 
-    def next(self):
+    def __next__(self):
         return 26, 7
 
 
@@ -224,5 +224,5 @@ class Step7(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 27, 1

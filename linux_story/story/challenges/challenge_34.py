@@ -34,7 +34,7 @@ class Step1(StepTemplateNano):
         _("{{rb:Use}} {{yb:ls dark-room/}} {{rb:to look inside the dark-room.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 34, 2
 
 
@@ -53,7 +53,7 @@ class Step2(StepTemplateNano):
         _("{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look inside the locked-room.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 34, 3
 
 
@@ -72,7 +72,7 @@ class Step3(StepTemplateNano):
         _("{{rb:Examine the sign with}} {{yb:cat locked-room/sign}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 34, 4
 
 
@@ -96,7 +96,7 @@ class Step4(StepTemplateNano):
     def block_command(self, last_user_input):
         return unblock_commands(last_user_input, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 34, 5
 
 
@@ -115,7 +115,7 @@ class Step5(StepTemplateNano):
         _("{{rb:Look inside the cage with}} {{yb:ls cage}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 34, 6
 
 
@@ -132,7 +132,7 @@ class Step6(StepTemplateNano):
         _("{{rb:Examine the bird with}} {{yb:cat cage/bird}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 34, 7
 
 
@@ -156,7 +156,7 @@ class Step7(StepTemplateNano):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 34, 8
 
 
@@ -189,5 +189,5 @@ class Step8(StepTemplateChmod):
         "{{bb:dark-room.}}"
     ]
 
-    def next(self):
+    def __next__(self):
         return 35, 1

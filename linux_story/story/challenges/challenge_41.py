@@ -30,7 +30,7 @@ class TerminalRabbit(TerminalChmod):
     def _autocomplete_files(self, text, line, begidx, endidx, only_dirs=False, only_exe=False):
         completions = TerminalChmod._autocomplete_files(self, text, line, begidx, endidx, only_dirs, only_exe)
         if "cage/" in completions or "Mum" in completions:
-            print "\n" + RABBIT_BLOCKING_RABBITHOLE
+            print("\n" + RABBIT_BLOCKING_RABBITHOLE)
             return []
         else:
             return completions
@@ -41,7 +41,7 @@ class StepTemplateChmod(StepTemplate):
 
     def block_command(self, line):
         if "rabbithole" in line and ("ls" in line or "cat" in line):
-            print RABBIT_BLOCKING_RABBITHOLE
+            print(RABBIT_BLOCKING_RABBITHOLE)
             return True
         else:
             return StepTemplate.block_command(self, line)
@@ -71,7 +71,7 @@ class Step1(StepTemplateChmod):
 
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         if self.read_note:
             return 41, 4
         else:
@@ -89,7 +89,7 @@ class Step2(StepTemplateChmod):
         _("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 41, 3
 
 
@@ -104,7 +104,7 @@ class Step3(StepTemplateChmod):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 42, 1
 
 
@@ -120,5 +120,5 @@ class Step4(StepTemplateChmod):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 42, 1

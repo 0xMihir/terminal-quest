@@ -31,7 +31,7 @@ class Step1(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 5, 2
 
 
@@ -45,7 +45,7 @@ class Step2(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}")]
 
-    def next(self):
+    def __next__(self):
         return 5, 3
 
 
@@ -62,7 +62,7 @@ class Step3(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 5, 4
 
 
@@ -75,7 +75,7 @@ class Step4(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
-    def next(self):
+    def __next__(self):
         return 5, 5
 
 
@@ -94,7 +94,7 @@ class Step5(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 5, 6
 
 
@@ -107,7 +107,7 @@ class Step6(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}")]
 
-    def next(self):
+    def __next__(self):
         return 5, 7
 
 
@@ -122,7 +122,7 @@ class Step7(StepTemplateCd):
     commands = "cat note"
     hints = [_("{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}")]
 
-    def next(self):
+    def __next__(self):
         return 5, 8
 
 
@@ -139,7 +139,7 @@ class Step8(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 5, 9
 
 
@@ -156,7 +156,7 @@ class Step9(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 5, 10
 
 
@@ -172,5 +172,5 @@ class Step10(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 6, 1

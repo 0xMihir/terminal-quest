@@ -52,7 +52,7 @@ class Step1(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 13, 2
 
 
@@ -76,7 +76,7 @@ class Step2(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 13, 3
 
 
@@ -95,7 +95,7 @@ class Step3(StepTemplateMv):
         _("{{rb:Use}} {{yb:ls}} {{rb:by itself to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 13, 4
 
 
@@ -127,7 +127,7 @@ class Step4(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 13, 5
 
 
@@ -152,5 +152,5 @@ class Step5(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 14, 1

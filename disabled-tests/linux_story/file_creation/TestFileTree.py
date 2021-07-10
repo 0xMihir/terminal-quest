@@ -53,7 +53,7 @@ class TestFileTree(unittest.TestCase):
                 {
                     "name": "Dad",
                     "contents": get_story_file("Dad"),
-                    "permissions": 0755
+                    "permissions": 0o755
                 }
             ]
         }
@@ -118,13 +118,13 @@ class TestFileTree(unittest.TestCase):
         self.assertFalse(os.path.exists(dad))
 
     def test_can_create_dir_with_no_write_permission_with_child(self):
-        self.__containing_folder_with_permission_removed(0500, '0500')
+        self.__containing_folder_with_permission_removed(0o500, '0500')
 
     def test_dir_with_no_execute_permissions_contains_child(self):
-        self.__containing_folder_with_permission_removed(0600, '0600')
+        self.__containing_folder_with_permission_removed(0o600, '0600')
 
     def test_dir_with_no_read_permissions_contains_child(self):
-        self.__containing_folder_with_permission_removed(0300, '0300')
+        self.__containing_folder_with_permission_removed(0o300, '0300')
 
     def test_dir_with_no_permissions_contains_child(self):
         self.__containing_folder_with_permission_removed(0000, '0')
@@ -149,8 +149,8 @@ class TestFileTree(unittest.TestCase):
         FileTree(tree, self.__end_path).parse_complete(1, 1)
         house = os.path.join(self.__end_path, "~/my-house")
         dad = os.path.join(house, "Dad")
-        self.assertEquals(get_oct_permissions(house), string_permissions)
-        os.chmod(house, 0755)
+        self.assertEqual(get_oct_permissions(house), string_permissions)
+        os.chmod(house, 0o755)
         self.assertTrue(os.path.exists(dad))
 
     def test_containing_folder_outside_challenge_scope_then_child_file_is(self):
@@ -245,11 +245,11 @@ class TestFileTree(unittest.TestCase):
         contents_path = "/tmp/test"
         contents = "hello"
         open(contents_path, "w+").write(contents)
-        file_tree.create_item("file", "~/my-house", 0644, contents_path)
+        file_tree.create_item("file", "~/my-house", 0o644, contents_path)
         house = os.path.join(self.__end_path, "~/my-house")
         self.assertTrue(os.path.exists(house))
         test_contents = open(house).readline()
-        self.assertEquals(contents, test_contents)
+        self.assertEqual(contents, test_contents)
 
     def test_setting_permissions_in_challenges_works(self):
         tree = {
@@ -262,12 +262,12 @@ class TestFileTree(unittest.TestCase):
                         {
                             "challenge": 1,
                             "step": 1,
-                            "permissions": 0500
+                            "permissions": 0o500
                         },
                         {
                             "challenge": 2,
                             "step": 1,
-                            "permissions": 0300
+                            "permissions": 0o300
                         }
                     ]
                 }
@@ -276,11 +276,11 @@ class TestFileTree(unittest.TestCase):
         FileTree(tree, self.__end_path).parse_complete(1, 9)
         house = os.path.join(self.__end_path, "~/my-house")
         self.assertTrue(os.path.exists(house))
-        self.assertEquals(get_oct_permissions(house), "0500")
+        self.assertEqual(get_oct_permissions(house), "0500")
         self.tearDown()
         FileTree(tree, self.__end_path).parse_complete(2, 1)
         self.assertTrue(os.path.exists(house))
-        self.assertEquals(get_oct_permissions(house), "0300")
+        self.assertEqual(get_oct_permissions(house), "0300")
 
 
 if __name__ == '__main__':

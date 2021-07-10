@@ -6,8 +6,8 @@
 # Controls communicating between the GUI and the terminal
 import socket
 import threading
-import Queue
-import SocketServer
+import queue
+import socketserver
 import time
 import traceback
 
@@ -22,8 +22,8 @@ class MessageServer:
     def __init__(self, queue, window):
         self.__window = window
         self.__server_busy = False
-        SocketServer.TCPServer.allow_reuse_address = True
-        self.__server = SocketServer.TCPServer((MessageServer.HOST, MessageServer.PORT), MyTCPHandler)
+        socketserver.TCPServer.allow_reuse_address = True
+        self.__server = socketserver.TCPServer((MessageServer.HOST, MessageServer.PORT), MyTCPHandler)
         self.__server.queue = queue
         self.__is_busy = False
         self.__exiting = False
@@ -45,20 +45,20 @@ class MessageServer:
         try:
             self.__is_busy = True
             data_dict = self.__server.queue.get(False, timeout=5.0)
-            if 'exit' in data_dict.keys():
+            if 'exit' in list(data_dict.keys()):
                 self.__window.finish_game()
                 self.shutdown()
                 return False
-            elif 'hint' in data_dict.keys():
+            elif 'hint' in list(data_dict.keys()):
                 self.__window.show_hint(data_dict["hint"])
-            elif 'challenge' in data_dict.keys() and 'story' in data_dict.keys() and 'spells' in data_dict.keys():
+            elif 'challenge' in list(data_dict.keys()) and 'story' in list(data_dict.keys()) and 'spells' in list(data_dict.keys()):
                 self.__window.start_new_challenge(data_dict)
-            elif 'dark' in data_dict.keys():
+            elif 'dark' in list(data_dict.keys()):
                 self.__window.set_theme(data_dict["dark"])
 
             self.__is_busy = False
 
-        except Queue.Empty:
+        except queue.Empty:
             return True
         except Exception:
             logger.error('Unexpected error in MainWindow: check_queue: - [{}]'.format(traceback.format_exc()))

@@ -71,7 +71,7 @@ class Step1(StepTemplateCd):
         else:
             return level_up
 
-    def next(self):
+    def __next__(self):
         return 10, 2
 
 
@@ -135,7 +135,7 @@ class Step2(StepTemplateCd):
         # print the hint
         self.send_hint(hint)
 
-    def next(self):
+    def __next__(self):
         return 10, 3
 
 
@@ -148,7 +148,7 @@ class Step3(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town.}}")]
 
-    def next(self):
+    def __next__(self):
         return 10, 4
 
 
@@ -168,7 +168,7 @@ class Step4(StepTemplateCd):
         "{{rb:, try using it!}}"),
     ]
 
-    def next(self):
+    def __next__(self):
         return 10, 5
 
 
@@ -194,7 +194,7 @@ class Step5(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 10, 6
 
 
@@ -212,5 +212,5 @@ class Step6(StepTemplateCd):
         _("{{rb:Use}} {{yb:ls}} {{rb:to have a look around you.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 11, 1

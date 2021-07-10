@@ -54,7 +54,7 @@ class Step1(StepTemplateEcho):
 
         return StepTemplateEcho.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 19, 2
 
 
@@ -95,7 +95,7 @@ class Step2(StepTemplateEcho):
         else:
             return StepTemplateEcho.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         Step3.prev_command = self._last_user_input
         return 19, 3
 
@@ -150,7 +150,7 @@ class Step3(StepTemplateEcho):
             self.send_stored_hint()
             return False
 
-    def next(self):
+    def __next__(self):
         return 19, 4
 
 
@@ -190,5 +190,5 @@ class Step4(StepTemplateEcho):
         else:
             self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 20, 1

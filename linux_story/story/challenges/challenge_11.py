@@ -58,7 +58,7 @@ class Step1(StepTemplateCd):
         end_dir_validated = self.get_fake_path() == self.end_dir
 
         # if the validation is included
-        if line in self.all_commands.keys() and end_dir_validated:
+        if line in list(self.all_commands.keys()) and end_dir_validated:
             # Print hint from person
             hint = self.all_commands[self._last_user_input]
             self.all_commands.pop(self._last_user_input, None)
@@ -71,12 +71,12 @@ class Step1(StepTemplateCd):
             self.send_hint(hint)
 
         else:
-            self.send_hint(_("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0])
+            self.send_hint(_("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % list(self.all_commands.keys())[0])
 
         # Don't pass unless the user has emptied self.all_commands
         return False
 
-    def next(self):
+    def __next__(self):
         return 11, 2
 
 
@@ -110,7 +110,7 @@ class Step2(StepTemplateMv):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 11, 3
 
 
@@ -135,7 +135,7 @@ class Step3(StepTemplateMv):
         }
     ]
 
-    def next(self):
+    def __next__(self):
         return 11, 4
 
 
@@ -156,7 +156,7 @@ class Step4(StepTemplateMv):
         _("{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 11, 5
 
 
@@ -186,7 +186,7 @@ class Step5(StepTemplateMv):
         else:
             return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 11, 6
 
 
@@ -217,7 +217,7 @@ class Step6(StepTemplateMv):
         _("{{rb:Look around using}} {{yb:ls}} {{rb:to check if Eleanor is here.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 11, 7
 
 
@@ -240,7 +240,7 @@ class Step7(StepTemplateMv):
         _("{{rb:Look in the town directory by using either}} {{yb:ls ../}} {{rb:or}} {{yb:ls ~/town/}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 11, 8
 
 
@@ -277,5 +277,5 @@ class Step8(StepTemplateMv):
             self.send_stored_hint()
             return False
 
-    def next(self):
+    def __next__(self):
         return 12, 1

@@ -87,7 +87,7 @@ class Storybook(Gtk.TextView):
         lines = self.__parse_string(string)
         unstyled_string = self.__compose_string(lines)
 
-        for i in xrange(len(lines)):
+        for i in range(len(lines)):
             line = lines[i]
 
             # if we are printing a new word, notify the sound manager
@@ -208,13 +208,13 @@ class Storybook(Gtk.TextView):
         text = get_ascii_art(filename)
         text_lines = text.splitlines()
         leading_newlines = len(text_lines)
-        for i in xrange(leading_newlines, -1, -1):
+        for i in range(leading_newlines, -1, -1):
             self.clear()
 
-            for j in xrange(i):
+            for j in range(i):
                 self.print_text('')
 
-            for j in xrange(leading_newlines - i):
+            for j in range(leading_newlines - i):
                 self.print_text(text_lines[j])
 
             time.sleep(0.2)

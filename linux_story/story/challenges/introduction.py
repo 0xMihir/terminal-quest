@@ -25,5 +25,5 @@ class Step1(StepTemplateLs):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
 
-    def next(self):
+    def __next__(self):
         return 1, 1

@@ -35,7 +35,7 @@ class Step1(StepTemplateChmod):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 38, 2
 
 
@@ -52,7 +52,7 @@ class Step2(StepTemplateChmod):
         _("{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the Swordmaster's door.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 38, 3
 
 
@@ -86,9 +86,9 @@ class Step3(StepTemplateChmod):
                            "The answer was in there.\"}}")
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         path = generate_real_path("~/woods/clearing/house")
-        os.chmod(path, 0755)
+        os.chmod(path, 0o755)
         return 38, 4
 
 
@@ -107,7 +107,7 @@ class Step4(StepTemplateChmod):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 38, 5
 
 
@@ -124,5 +124,5 @@ class Step5(StepTemplateChmod):
         "ls"
     ]
 
-    def next(self):
+    def __next__(self):
         return 39, 1

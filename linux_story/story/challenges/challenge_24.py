@@ -33,7 +33,7 @@ class Step1(StepTemplateMkdir):
 
     companion_speech = _("Eleanor: {{Bb:I can't see my parents anywhere...but there's a weird building there.}}")
 
-    def next(self):
+    def __next__(self):
         return 24, 2
 
 
@@ -55,7 +55,7 @@ class Step2(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 24, 3
 
 
@@ -83,7 +83,7 @@ class Step3(StepTemplateMkdir):
     file_list = [{"path": "~/town/east/shed-shop/Eleanor"}]
     companion_speech = _("Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}")
 
-    def next(self):
+    def __next__(self):
         return 24, 4
 
 
@@ -107,5 +107,5 @@ class Step4(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great listener, I'd tell her everything.}}")
 
-    def next(self):
+    def __next__(self):
         return 25, 1

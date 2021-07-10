@@ -34,13 +34,13 @@ class Step1(StepTemplateChmod):
         {
             "path": "~/woods/cave/chest/answer",
             "type": "file",
-            "permissions": 0644,
+            "permissions": 0o644,
             "contents": get_story_file("answer-cave")
         },
         {
             "path": "~/woods/cave/chest/riddle",
             "type": "file",
-            "permissions": 0644,
+            "permissions": 0o644,
             "contents": get_story_file("riddle-cave")
         }
     ]
@@ -55,7 +55,7 @@ class Step1(StepTemplateChmod):
         "ls ./"
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 2
 
 
@@ -75,7 +75,7 @@ class Step2(StepTemplateChmod):
         "ls chest/"
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 3
 
 
@@ -98,7 +98,7 @@ class Step3(StepTemplateChmod):
             return True
         self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 37, 4
 
 
@@ -119,7 +119,7 @@ class Step4(StepTemplateChmod):
         _("{{rb:Use}} {{yb:ls chest/}} {{rb:to look inside the chest.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 5
 
 
@@ -144,5 +144,5 @@ class Step5(StepTemplateChmod):
             return
         return StepTemplateChmod.check_command(self, last_user_input)
 
-    def next(self):
+    def __next__(self):
         return 38, 1

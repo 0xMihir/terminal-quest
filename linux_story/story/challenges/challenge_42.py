@@ -36,7 +36,7 @@ class Step1(StepTemplateChmod):
         {
             "path": "~/town/east/library/Rabbit",
             "contents": get_story_file("Rabbit"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -45,7 +45,7 @@ class Step1(StepTemplateChmod):
         "~/woods/thicket/note"
     ]
 
-    def next(self):
+    def __next__(self):
         return 42, 2
 
 
@@ -78,7 +78,7 @@ class Step2(StepTemplateChmod):
         "enable all the permissions.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 42, 3
 
 
@@ -95,13 +95,13 @@ class Step3(StepTemplateChmod):
         {
             "path": "~/town/east/library/private-section/chest/scroll",
             "contents": get_story_file("scroll"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "path": "~/town/east/library/private-section/chest/torn-note",
             "contents": get_story_file("torn-note"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -109,7 +109,7 @@ class Step3(StepTemplateChmod):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 42, 4
 
 
@@ -133,7 +133,7 @@ class Step4(StepTemplateChmod):
         {
             "path": "~/town/east/library/private-section/Rabbit",
             "contents": get_story_file("Rabbit"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -145,7 +145,7 @@ class Step4(StepTemplateChmod):
     def block_command(self, line):
         if line == "cat chest/scroll":
             self.set_last_user_input(line)
-            print _("The Rabbit snatched the chest away!")
+            print(_("The Rabbit snatched the chest away!"))
             return True
         return StepTemplateChmod.block_command(self, line)
 
@@ -154,7 +154,7 @@ class Step4(StepTemplateChmod):
             return True
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         if self.get_last_user_input() == "cat chest/scroll":
             return 42, 5
         else:
@@ -170,7 +170,7 @@ class RabbitTakesChest(StepTemplateChmod):
         "~/town/east/library/private-section/chest"
     ]
 
-    def next(self):
+    def __next__(self):
         return 42, 7
 
 
@@ -216,7 +216,7 @@ class Step7(StepTemplateChmod):
     def _run_at_start(self):
         Animation("rabbit-animation").play_across_screen(speed=10)
 
-    def next(self):
+    def __next__(self):
         return 42, 8
 
 
@@ -238,6 +238,6 @@ class Step8(StepTemplateChmod):
         time.sleep(1)
         self.send_dark_theme()
 
-    def next(self):
+    def __next__(self):
         return 43, 1
 

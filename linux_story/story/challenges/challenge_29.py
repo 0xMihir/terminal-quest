@@ -191,7 +191,7 @@ class Step1(StepNanoStory):
     def check_command(self, last_user_input):
         return self.story_check_command(last_user_input, self.echo_hit)
 
-    def next(self):
+    def __next__(self):
         return 29, 2
 
 
@@ -210,7 +210,7 @@ class Step2(StepNanoStory):
     def check_command(self, last_user_input):
         return self.story_check_command(last_user_input, self.echo_hit)
 
-    def next(self):
+    def __next__(self):
         return 29, 3
 
 
@@ -229,7 +229,7 @@ class Step3(StepNanoStory):
     def check_command(self, last_user_input):
         return self.story_check_command(last_user_input, self.echo_hit)
 
-    def next(self):
+    def __next__(self):
         return 29, 4
 
 
@@ -252,5 +252,5 @@ class Step4(StepNanoStory):
 
     commands = []
 
-    def next(self):
+    def __next__(self):
         return 30, 1

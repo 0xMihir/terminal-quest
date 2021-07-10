@@ -17,7 +17,7 @@ from linux_story.helper_functions import debugger
 def cd(real_path, line, has_access=True):
     if not has_access:
         # Could simplify this to "Permission denied"
-        print "-bash: cd: {}: Permission denied".format(line)
+        print("-bash: cd: {}: Permission denied".format(line))
         return
 
     if not line:
@@ -49,4 +49,4 @@ def mkdir(real_path):
     # check if directory exists
     if os.path.exists(real_path):
         return "error", "whatever the mkdir error message is here"
-    os.mkdir(real_path, 0755)
+    os.mkdir(real_path, 0o755)

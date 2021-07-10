@@ -42,7 +42,7 @@ class Step1(StepTemplateNano):
 
     companion_speech = _("Eleanor: {{Bb:\"I'm hungry. Can you see anywhere we could eat?\"}}")
 
-    def next(self):
+    def __next__(self):
         return 28, 2
 
 
@@ -64,7 +64,7 @@ class Step2(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 28, 3
 
 
@@ -96,7 +96,7 @@ class Step3(StepTemplateNano):
 
     companion_speech = _("Eleanor: {{Bb:It seems really empty here...}}")
 
-    def next(self):
+    def __next__(self):
         return 28, 4
 
 
@@ -118,7 +118,7 @@ class Step4(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 28, 5
 
 
@@ -154,7 +154,7 @@ class Step5(StepTemplateNano):
         sound_manager = SoundManager()
         sound_manager.play_sound('steps')
 
-    def next(self):
+    def __next__(self):
         return 28, 6
 
 
@@ -177,5 +177,5 @@ class Step6(StepTemplateNano):
     ]
     companion_speech = _("Eleanor: {{Bb:\"...oh! I think I recognise that woman!\"}}")
 
-    def next(self):
+    def __next__(self):
         return 29, 1

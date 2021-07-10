@@ -39,7 +39,7 @@ class Step1(StepTemplateChmod):
         "~/woods/cave/bird"
     ]
 
-    def next(self):
+    def __next__(self):
         return 36, 2
 
 
@@ -60,7 +60,7 @@ class Step2(StepTemplateChmod):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 36, 3
 
 
@@ -81,7 +81,7 @@ class Step3(StepTemplateChmod):
         _("{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look in the locked-room.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 36, 4
 
 
@@ -97,5 +97,5 @@ class Step4(StepTemplateChmod):
         "./locked-room/lighter"
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 1

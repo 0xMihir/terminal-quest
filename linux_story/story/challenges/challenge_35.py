@@ -33,7 +33,7 @@ class Step1(StepTemplateChmod):
         _("{{rb:Use}} {{yb:ls dark-room}} {{rb:to look inside the dark-room.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 35, 2
 
 
@@ -51,7 +51,7 @@ class Step2(StepTemplateChmod):
         _("{{rb:Use}} {{yb:cat dark-room/sign}} {{rb:to read the sign.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 35, 3
 
 
@@ -75,7 +75,7 @@ class Step3(StepTemplateChmod):
     ]
     highlighted_commands = "chmod"
 
-    def next(self):
+    def __next__(self):
         return 35, 4
 
 
@@ -100,7 +100,7 @@ class Step4(StepTemplateChmod):
 
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 35, 5
 
 
@@ -124,7 +124,7 @@ class Step5(StepTemplateChmod):
         _("{{rb:Use}} {{yb:chmod +w cage}} {{rb:to unlock the cage.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 35, 6
 
 
@@ -146,7 +146,7 @@ class Step6(StepTemplateChmod):
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         Animation("bird-animation").play_across_screen(speed=5)
         return 36, 1
 

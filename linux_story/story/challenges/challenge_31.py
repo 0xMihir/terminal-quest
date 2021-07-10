@@ -31,7 +31,7 @@ class Step1(StepTemplateNano):
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 31, 2
 
 
@@ -58,7 +58,7 @@ class Step2(StepTemplateNano):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 31, 3
 
 
@@ -80,7 +80,7 @@ class Step3(StepTemplateNano):
         sound_manager = SoundManager()
         sound_manager.play_sound('steps')
 
-    def next(self):
+    def __next__(self):
         return 31, 4
 
 
@@ -118,5 +118,5 @@ class Step4(StepTemplateNano):
         else:
             return StepTemplateNano.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 32, 1

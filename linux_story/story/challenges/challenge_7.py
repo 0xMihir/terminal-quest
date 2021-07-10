@@ -24,7 +24,7 @@ class Step1(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:To look around, use}} {{yb:ls}}")]
 
-    def next(self):
+    def __next__(self):
         return 7, 2
 
 
@@ -37,7 +37,7 @@ class Step2(StepTemplateCd):
     commands = "cat Mayor"
     hints = [_("{{rb:Stuck? Type:}} {{yb:cat Mayor}}")]
 
-    def next(self):
+    def __next__(self):
         return 7, 3
 
 
@@ -74,13 +74,13 @@ class Step3(StepTemplateCd):
 
         # check through list of commands
         self.hints = [
-            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
+            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % list(self.all_commands.keys())[0]
         ]
 
         end_dir_validated = self.get_fake_path() == self.end_dir
 
         # if the validation is included
-        if (line in self.all_commands.keys()) and end_dir_validated:
+        if (line in list(self.all_commands.keys())) and end_dir_validated:
             # Print hint from person
             hint = "\n" + self.all_commands[line]
 
@@ -102,5 +102,5 @@ class Step3(StepTemplateCd):
         # emptied
         return False
 
-    def next(self):
+    def __next__(self):
         return 8, 1

@@ -57,7 +57,7 @@ class Step1(StepTemplateMkdir):
         else:
             return StepTemplateMkdir.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 25, 2
 
 
@@ -94,7 +94,7 @@ class Step2(StepTemplateMkdir):
         else:
             return StepTemplateMkdir.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 25, 3
 
 
@@ -113,7 +113,7 @@ class Step3(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:Ah, look over there!}}")
 
-    def next(self):
+    def __next__(self):
         return 25, 4
 
 
@@ -139,7 +139,7 @@ class Step4(StepTemplateMkdir):
     ]
     companion_speech = _("Eleanor: {{Bb:I don't think this will work...}}")
 
-    def next(self):
+    def __next__(self):
         return 25, 5
 
 
@@ -192,7 +192,7 @@ class Step5(StepTemplateMkdir):
         else:
             return StepTemplateMkdir.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 25, 6
 
 
@@ -231,7 +231,7 @@ class Step6(StepTemplateMkdir):
             return True
         return StepTemplateMkdir.check_command(self, self._last_user_input)
 
-    def next(self):
+    def __next__(self):
         return 25, 7
 
 
@@ -256,5 +256,5 @@ class Step7(StepTemplateMkdir):
         else:
             return StepTemplateMkdir.block_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 26, 1

@@ -25,7 +25,7 @@ class Step1(StepTemplateCd):
     commands = "cat Mum"
     hints = [_("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
-    def next(self):
+    def __next__(self):
         return 6, 2
 
 
@@ -44,7 +44,7 @@ class Step2(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 6, 3
 
 
@@ -58,7 +58,7 @@ class Step3(StepTemplateCd):
     commands = "ls"
     hints = [_("{{rb:Stuck? Type}} {{yb:ls}} {{rb:to look around.}}")]
 
-    def next(self):
+    def __next__(self):
         return 6, 4
 
 
@@ -74,5 +74,5 @@ class Step4(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 7, 1

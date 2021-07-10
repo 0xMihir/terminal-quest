@@ -23,7 +23,7 @@ def unblock_commands(line, list_of_commands):
             line not in list_of_commands and \
             not line.strip() == 'mv --help':
 
-        print _('Nice try! But you do not need that command for this challenge')
+        print(_('Nice try! But you do not need that command for this challenge'))
         return True
 
 
@@ -32,34 +32,33 @@ def unblock_commands_with_cd_hint(line, list_of_commands):
     """
     line = line.strip()
     if ("cd" in line and line not in list_of_commands):
-        print _("You're close, but you entered an unexpected destination path. Try going somewhere else.")
+        print(_("You're close, but you entered an unexpected destination path. Try going somewhere else."))
         return True
 
     elif line in ["mv ", "rm "] and not line.strip() == 'mv --help':
-        print _('Nice try! But you do not need that command for this challenge')
+        print(_('Nice try! But you do not need that command for this challenge'))
         return True
 
 
 def unblock_commands_with_mkdir_hint(line, list_of_commands):
     line = line.strip()
     if ("mkdir" in line and line not in list_of_commands):
-        print \
-            _("Nearly there!  But you're trying to build something " +\
-            "different from what was expected.  Try building something else.")
+        print(_("Nearly there!  But you're trying to build something " +\
+            "different from what was expected.  Try building something else."))
 
         return True
 
     elif line_contains_dangerous_command(line) and \
             not line.strip() == 'mv --help':
 
-        print _('Nice try! But you do not need that command for this challenge')
+        print(_('Nice try! But you do not need that command for this challenge'))
         return True
 
 
 def unblock_cd_commands(line):
     if line.startswith("mkdir") or \
             (line.startswith("mv") and not line.strip() == 'mv --help'):
-        print _('Nice try! But you do not need that command for this challenge')
+        print(_('Nice try! But you do not need that command for this challenge'))
         return True
     return False
 
@@ -132,8 +131,8 @@ def route_between_paths(start_path, end_path):
     start_diff = start_split[1]
     end_diff = end_split[1]
 
-    start_dirs = filter(None, start_diff.split("/"))
-    end_dirs = filter(None, end_diff.split("/"))
+    start_dirs = [_f for _f in start_diff.split("/") if _f]
+    end_dirs = [_f for _f in end_diff.split("/") if _f]
 
     a_dest_path = start_path
     dest_paths = []

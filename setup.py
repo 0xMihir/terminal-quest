@@ -55,7 +55,7 @@ gtk3 = recursively_get_dirs("linux_story", "gtk3")
 file_creation = recursively_get_dirs("linux_story", "file_creation")
 media_images = recursively_get_dirs("", "media/images")
 media_sounds = recursively_get_dirs("", "media/sounds")
-icons = filter(is_image, recursively_get_dirs("", "icon"))
+icons = list(filter(is_image, recursively_get_dirs("", "icon")))
 kdesktop = recursively_get_dirs("", "kdesktop")
 
 setup(name='Linux Story',

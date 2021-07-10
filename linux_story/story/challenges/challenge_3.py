@@ -24,7 +24,7 @@ class Step1(StepTemplateCat):
     commands = ["ls shelves", "ls shelves/"]
     hints = [_("{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}")]
 
-    def next(self):
+    def __next__(self):
         return 3, 2
 
 
@@ -40,7 +40,7 @@ class Step2(StepTemplateCat):
     commands = "cat shelves/comic-book"
     hints = [_("{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}")]
 
-    def next(self):
+    def __next__(self):
         return 3, 3
 
 
@@ -55,5 +55,5 @@ class Step3(StepTemplateCat):
     commands = "cat shelves/note"
     hints = [_("{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}")]
 
-    def next(self):
+    def __next__(self):
         return 4, 1
