@@ -26,7 +26,7 @@ if __name__ == "__main__":
     def sigint_handler(signum, frame):
         pass
 
-    signal.signal(signal.SIGINT, sigint_handler)
+    # signal.signal(signal.SIGINT, sigint_handler)
 
     # Arguments are pipe filename, and then optionally
     # the Challenge and Step numbers

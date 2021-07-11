@@ -9,7 +9,7 @@
 from kano.logging import logger
 import json
 import socket
-
+from .helper_functions import colorize_string
 
 class MessageClient:
     HOST = "localhost"
@@ -32,8 +32,8 @@ class MessageClient:
         self.__send_message({"dark": False})
 
     def send_hint(self, string):
-        return
-        self.send_text(string)
+        print(colorize_string(string))
+        # self.send_text(string)
 
     def send_start_challenge_data(self, story, challenge, spells, highlighted, xp, print_text):
         return

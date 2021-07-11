@@ -5,6 +5,7 @@
 #
 # A chapter of the story
 
+from linux_story.Animation import Animation
 from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_commands

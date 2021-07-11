@@ -14,7 +14,7 @@ current_dir = os.path.abspath(os.path.dirname(__file__))
 
 # media dir
 media_local = os.path.join(current_dir, '../media')
-media_usr = '/usr/share/linux-story/media'
+media_usr = '/usr/local/share/linux-story/media'
 
 if os.path.exists(media_local):
     common_media_dir = media_local
@@ -55,7 +55,8 @@ def get_max_challenge_number():
     '''
 
     # Hardcoded path, perhaps change it later
-    path = os.path.join(current_dir, "../rules","app_profiles.json")
+    path = "/usr/local/share/kano-profile/rules/app_profiles.json"
+
     f = open(path)
     str_data = f.read()
     f.close()

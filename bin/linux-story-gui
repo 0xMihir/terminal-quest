@@ -37,7 +37,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
         LOCALE_PATH = os.path.join(dir_path, 'locale')
     else:
-        LOCALE_PATH = '/usr/share/locale'
+        LOCALE_PATH = '/usr/local/share/locale'
 
 from linux_story.MessageServer import MessageServer
 

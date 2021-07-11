@@ -42,7 +42,7 @@ def get_locales():
     for dirpath, dirnames, filenames in os.walk(locale_dir):
         for filename in filenames:
             locales.append(
-                (os.path.join('/usr/share', dirpath),
+                (os.path.join('/usr/local/share', dirpath),
                  [os.path.join(dirpath, filename)])
             )
 
@@ -64,17 +64,17 @@ setup(name='Linux Story',
       author='Team Kano',
       author_email='dev@kano.me',
       url='https://github.com/KanoComputing/linux-tutorial',
-      packages=['linux_story'],
+      packages=['linux_story',"kano_profile","kano"],
       package_dir={'linux_story': 'linux_story'},
       scripts=['bin/linux-story', 'bin/linux-story-gui'],
       package_data={
           'linux_story': story + ascii_assets + gtk3 + file_creation
       },
       data_files=[
-          ('/usr/share/linux-story/media/images', media_images),
-          ('/usr/share/linux-story/media/sounds', media_sounds),
-          ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
-          ('/usr/share/icons/Kano/88x88/apps', icons),
-          ('/usr/share/linux-story', ['nano-2.2.6/src/nano'])
+          ('/usr/local/share/linux-story/media/images', media_images),
+          ('/usr/local/share/linux-story/media/sounds', media_sounds),
+          ('/usr/local/share/kano-desktop/kdesk/kdesktop/', kdesktop),
+          ('/usr/local/share/icons/Kano/88x88/apps', icons),
+          ('/usr/local/share/linux-story', ['nano-2.2.6/src/nano'])
       ] + get_locales()
       )

@@ -50,7 +50,7 @@ After that, merge the existing translations with `make update` and ask your tran
 * `msgfmt` converts a `.po` file into a binary *message object* file.
 * You don't link these `.mo` files with your application binary.
 * The `.mo` files are bundled alongside with your software as part of the distribution package.
-* During installation, the `.mo` files are copied into the system's locale directory, usually `/usr/share/locale`.
+* During installation, the `.mo` files are copied into the system's locale directory, usually `/usr/local/share/locale`.
 * On startup, your application will look for the message object file that it needs for the current system locale.
 * The locale even allows you to provide region-specific translations, e.g. "colour" for en_UK vs "color" for en_US.
 * At runtime, all user-visible strings are being replaced with the translations.

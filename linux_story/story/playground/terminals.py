@@ -162,3 +162,6 @@ class Complete_Terminal(Terminal):
 
     def do_man(self, line):
         launch_application(self.current_dir, self.filetree, line, "man")
+    
+    def do_exit(self,line):
+        sys.exit(0)

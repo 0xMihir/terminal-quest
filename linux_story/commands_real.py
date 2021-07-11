@@ -133,13 +133,16 @@ def shell_command(real_loc, line, command_word=""):
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     stdout, stderr = p.communicate()
-    stdout = stdout.decode()
-    stderr = stderr.decode()
+
     if stderr:
+        if type(stderr) != str:
+            stderr = stderr.decode()
         print((stderr.strip().replace(fake_home_dir, '~')))
         return False
 
     if stdout:
+        if type(stdout) != str:
+            stdout = stdout.decode()
         if command_word == "cat":
             print(stdout)
 
@@ -205,7 +208,7 @@ def nano(real_path, line):
 
     if not os.path.exists(nano_filepath):
         # File path of installed nano
-        nano_filepath = "/usr/share/linux-story/nano"
+        nano_filepath = "/usr/local/share/linux-story/nano"
 
     if not os.path.exists(nano_filepath):
         raise Exception("Cannot find nano")
@@ -219,12 +222,15 @@ def nano(real_path, line):
     cmd = 'LINES= COLUMNS= ' + nano_filepath + " " + line
     p = subprocess.Popen(cmd, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
-    stdout = stdout.decode()
-    stderr = stderr.decode()
+
     if stdout:
+        if type(stdout) != str:
+            stdout = stdout.decode()
         print((stdout.strip()))
 
     if stderr:
+        if type(stderr) != str:
+            stderr = stderr.decode()
         print((stderr.strip()))
 
 
@@ -245,14 +251,16 @@ def run_executable(real_path, line):
 
     p = subprocess.Popen(["sh", line], cwd=real_path)
     stdout, stderr = p.communicate()
-    stdout = stdout.decode()
-    stderr = stderr.decode()
     # notifying the SoundManager about the script that was just run
     script_name = line.split()[0]
     sounds_manager.on_command_run([script_name])
 
     if stdout:
-        print((stdout.strip()))
+            if type(stdout) != str:
+                stdout = stdout.decode()
+            print((stdout.strip()))
 
     if stderr:
+        if type(stderr) != str:
+            stderr = stderr.decode()
         print((stderr.strip()))

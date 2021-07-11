@@ -274,7 +274,7 @@ class Step8(StepTemplateMkdir):
     def __next__(self):
         return 21, 9
 
-
+# TODO: move multiple
 class Step9(StepTemplateMkdir):
     story = [
         ("{{gb:It worked! You've succesfully created something hidden.}}"),
@@ -293,6 +293,7 @@ class Step9(StepTemplateMkdir):
         "mv Cobweb .shelter",
         "mv Ruth .shelter/",
         "mv Ruth .shelter"
+        
     ]
 
     def block_command(self, line):
