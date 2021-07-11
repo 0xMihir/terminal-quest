@@ -11,7 +11,7 @@ from linux_story.story.terminals.terminal_cd import TerminalCd
 
 
 class TerminalMv(TerminalCd):
-    terminal_commands = ["ls", "cat", "cd", "mv"]
+    terminal_commands = ["exit", "ls", "cat", "cd", "mv"]
 
     def do_mv(self, line):
         if "*" in line:

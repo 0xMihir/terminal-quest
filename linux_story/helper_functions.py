@@ -378,15 +378,3 @@ def colorize_string(str):
     a = re.sub("\{\{(\w+)?:",colorize,str)
     a = re.sub("\}\}","\033[0m",a)
     return a
-
-# def colorize_string(str):
-#     split = re.split("(\{\{.*?\}\})", str, flags=re.MULTILINE)
-#     out = []
-#     for i in split:
-#         if i.startswith("{{"):
-#             target = re.search("\{\{\w+:(.*?)\}\}", i).group(1)
-#             out.append(decorate_string(
-#                 target, pairs[i[2]], bold=(i[3] == "b")))
-#         else:
-#             out.append(i)
-#     return "".join(out)

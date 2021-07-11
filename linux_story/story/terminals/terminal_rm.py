@@ -11,7 +11,7 @@ from linux_story.story.terminals.terminal_chmod import TerminalChmod
 
 
 class TerminalRm(TerminalChmod):
-    terminal_commands = [
+    terminal_commands = ["exit", 
         "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod", "rm"
     ]
 

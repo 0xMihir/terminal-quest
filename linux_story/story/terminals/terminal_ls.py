@@ -11,7 +11,7 @@ from linux_story.commands_real import ls
 
 
 class TerminalLs(KanoCmd):
-    terminal_commands = ["ls"]
+    terminal_commands = ["exit", "ls"]
 
     def do_ls(self, line):
         return ls(self._location.get_real_path(), line)

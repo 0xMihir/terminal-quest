@@ -11,7 +11,7 @@ from linux_story.story.terminals.terminal_mv import TerminalMv
 
 
 class TerminalEcho(TerminalMv):
-    terminal_commands = ["ls", "cat", "cd", "mv", "echo"]
+    terminal_commands = ["exit", "ls", "cat", "cd", "mv", "echo"]
 
     def do_echo(self, line):
         launch_application(self._location.get_real_path(), line, "echo")

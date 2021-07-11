@@ -26,7 +26,7 @@ def not_locked(directory):
 
 
 class TerminalCd(TerminalCat):
-    terminal_commands = ["ls", "cat", "cd"]
+    terminal_commands = ["exit", "ls", "cat", "cd"]
 
     def do_cd(self, line):
         if self.__check_cd(line):
