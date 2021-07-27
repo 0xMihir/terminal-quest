@@ -57,6 +57,7 @@ media_images = recursively_get_dirs("", "media/images")
 media_sounds = recursively_get_dirs("", "media/sounds")
 icons = list(filter(is_image, recursively_get_dirs("", "icon")))
 kdesktop = recursively_get_dirs("", "kdesktop")
+rules = recursively_get_dirs("", "rules")
 
 setup(name='Linux Story',
       version='1.2',
