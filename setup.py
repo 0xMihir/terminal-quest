@@ -54,7 +54,6 @@ ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
 gtk3 = recursively_get_dirs("linux_story", "gtk3")
 file_creation = recursively_get_dirs("linux_story", "file_creation")
 media_images = recursively_get_dirs("", "media/images")
-rules = recursively_get_dirs("", "rules")
 media_sounds = recursively_get_dirs("", "media/sounds")
 icons = list(filter(is_image, recursively_get_dirs("", "icon")))
 kdesktop = recursively_get_dirs("", "kdesktop")
@@ -73,7 +72,10 @@ setup(name='Linux Story',
       },
       data_files=[
           ('/usr/local/share/kano-profile/rules', rules),
+          ('/usr/local/share/linux-story/media/images', media_images),
+          ('/usr/local/share/linux-story/media/sounds', media_sounds),
+          ('/usr/local/share/kano-desktop/kdesk/kdesktop/', kdesktop),
+          ('/usr/local/share/icons/Kano/88x88/apps', icons),
           ('/usr/local/share/linux-story', ['nano-2.2.6/src/nano'])
       ] + get_locales()
       )
-
