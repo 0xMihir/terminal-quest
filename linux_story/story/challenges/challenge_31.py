@@ -6,7 +6,6 @@
 # A chapter of the story
 from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.sound_manager import SoundManager
 from linux_story.story.terminals.terminal_nano import TerminalNano
 
 
@@ -75,10 +74,6 @@ class Step3(StepTemplateNano):
     hints = [
         ("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
-
-    def _run_at_start(self):
-        sound_manager = SoundManager()
-        sound_manager.play_sound('steps')
 
     def __next__(self):
         return 31, 4

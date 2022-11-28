@@ -10,8 +10,8 @@ from linux_story.story.terminals.terminal_rm import TerminalRm
 
 
 class TerminalSudo(TerminalRm):
-    terminal_commands = ["exit", 
-        "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod", "rm", "sudo"
+    terminal_commands = [
+        "exit", "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod", "rm", "sudo"
     ]
 
     def do_sudo(self, line):

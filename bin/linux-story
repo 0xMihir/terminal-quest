@@ -10,6 +10,9 @@
 import sys
 import os
 import signal
+from pathlib import Path
+from kano.colours import decorate_string
+
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
@@ -17,7 +20,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
         LOCALE_PATH = os.path.join(dir_path, 'locale')
     else:
-        LOCALE_PATH = '/usr/local/share/locale'
+        LOCALE_PATH = str(Path.home().joinpath('.terminal-quest/locale'))
 
 
 from kano_profile.apps import load_app_state_variable, save_app_state_variable
@@ -31,7 +34,8 @@ os.system('reset')
 
 if __name__ == "__main__":
     def sigint_handler(signum, frame):
-        pass
+        print(decorate_string("Goodbye!", fg_colour="green", bold=True))
+        sys.exit(0)
 
     signal.signal(signal.SIGINT, sigint_handler)
 

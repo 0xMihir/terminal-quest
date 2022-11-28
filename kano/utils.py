@@ -130,9 +130,6 @@ def get_user_unsudoed():
         return 'root'
 
 
-
-def play_sound(path,background=False):
-    pass
 class TimeoutException(Exception):
     pass
 

@@ -8,6 +8,7 @@
 
 from distutils.core import setup
 import os
+from pathlib import Path
 
 
 def recursively_get_dirs(package_name, start_dir):
@@ -28,12 +29,6 @@ def recursively_get_dirs(package_name, start_dir):
     return paths
 
 
-def is_image(filepath):
-    img_extensions = ['.png']
-    ext = os.path.splitext(filepath)[1]
-
-    return ext in img_extensions
-
 
 def get_locales():
     locale_dir = 'locale'
@@ -42,21 +37,15 @@ def get_locales():
     for dirpath, dirnames, filenames in os.walk(locale_dir):
         for filename in filenames:
             locales.append(
-                (os.path.join('/usr/local/share', dirpath),
-                 [os.path.join(dirpath, filename)])
-            )
+                (str(Path.home().joinpath('.terminal-quest/', dirpath)),
+                [str(Path(dirpath).joinpath(filename))])
+                )
 
     return locales
 
 
 story = recursively_get_dirs("linux_story", "story")
-ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
-gtk3 = recursively_get_dirs("linux_story", "gtk3")
 file_creation = recursively_get_dirs("linux_story", "file_creation")
-media_images = recursively_get_dirs("", "media/images")
-media_sounds = recursively_get_dirs("", "media/sounds")
-icons = list(filter(is_image, recursively_get_dirs("", "icon")))
-kdesktop = recursively_get_dirs("", "kdesktop")
 rules = recursively_get_dirs("", "rules")
 
 setup(name='Linux Story',
@@ -67,16 +56,12 @@ setup(name='Linux Story',
       url='https://github.com/KanoComputing/linux-tutorial',
       packages=['linux_story',"kano_profile","kano"],
       package_dir={'linux_story': 'linux_story'},
-      scripts=['bin/linux-story', 'bin/linux-story-gui'],
+      scripts=['bin/linux-story'],
       package_data={
-          'linux_story': story + ascii_assets + gtk3 + file_creation
+          'linux_story': story + ascii_assets
       },
       data_files=[
-          ('/usr/local/share/kano-profile/rules', rules),
-          ('/usr/local/share/linux-story/media/images', media_images),
-          ('/usr/local/share/linux-story/media/sounds', media_sounds),
-          ('/usr/local/share/kano-desktop/kdesk/kdesktop/', kdesktop),
-          ('/usr/local/share/icons/Kano/88x88/apps', icons),
-          ('/usr/local/share/linux-story', ['nano-2.2.6/src/nano'])
+          (str(Path.home().joinpath('.terminal-quest/kano-profile/rules')), rules),
+          (str(Path.home().joinpath('.terminal-quest/linux-story')), ['nano-2.2.6/src/nano'])
       ] + get_locales()
       )

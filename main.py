@@ -23,11 +23,6 @@ from linux_story.common import get_max_challenge_number
 os.system('reset')
 
 if __name__ == "__main__":
-    def sigint_handler(signum, frame):
-        pass
-
-    # signal.signal(signal.SIGINT, sigint_handler)
-
     # Arguments are pipe filename, and then optionally
     # the Challenge and Step numbers
     if len(sys.argv) == 3:

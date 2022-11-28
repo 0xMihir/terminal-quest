@@ -7,7 +7,6 @@
 from linux_story.story.challenges.CompanionMisc import StepTemplateNano
 from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.sound_manager import SoundManager
 
 
 # ----------------------------------------------------------------------------------------
@@ -150,9 +149,6 @@ class Step5(StepTemplateNano):
 
     companion_speech = ("Eleanor: {{Bb:\"...is there someone there?\"}}")
 
-    def _run_at_start(self):
-        sound_manager = SoundManager()
-        sound_manager.play_sound('steps')
 
     def __next__(self):
         return 28, 6

@@ -7,7 +7,6 @@
 
 from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_ls import TerminalLs
-from linux_story.sound_manager import SoundManager
 from linux_story.helper_functions import wrap_in_box
 
 
@@ -32,6 +31,7 @@ class Step1(StepLs):
     story += wrap_in_box([
         ("{{gb:New Power:}} Type {{yb:ls}} and press"),
         ("{{ob:Enter}} to {{lb:look around}}."),
+        "If you ever want to exit, type {{yb:exit}} and press {{ob:Enter}}."
     ])
 
     start_dir = "~/my-house/my-room"
@@ -42,9 +42,6 @@ class Step1(StepLs):
         ("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}} {{rb:to take a look around your bedroom.}}")
     ]
 
-    def _run_at_start(self):
-        sound_manager = SoundManager()
-        sound_manager.play_sound('alarm')
 
     def __next__(self):
         return 2, 1
