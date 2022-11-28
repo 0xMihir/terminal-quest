@@ -47,6 +47,8 @@ def get_locales():
 story = recursively_get_dirs("linux_story", "story")
 file_creation = recursively_get_dirs("linux_story", "file_creation")
 rules = recursively_get_dirs("", "rules")
+ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
+
 
 setup(name='Linux Story',
       version='1.2',
@@ -62,6 +64,5 @@ setup(name='Linux Story',
       },
       data_files=[
           (str(Path.home().joinpath('.terminal-quest/kano-profile/rules')), rules),
-          (str(Path.home().joinpath('.terminal-quest/linux-story')), ['nano-2.2.6/src/nano'])
       ] + get_locales()
       )

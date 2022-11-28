@@ -185,6 +185,7 @@ class StepNano:
             ) % self.get_goal_nano_end_content()
 
         self.send_hint(hint)
+        time.sleep(2)
 
     def __cancelled_save(self):
         """

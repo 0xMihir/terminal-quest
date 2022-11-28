@@ -8,6 +8,7 @@
 
 import os
 import subprocess
+import shutil
 
 from .helper_functions import colour_file_dir, debugger
 from linux_story.common import tq_file_system, fake_home_dir
@@ -197,15 +198,14 @@ def nano(real_path, line):
     '''
 
     # File path of the local nano
-    dir_path = os.path.abspath(os.path.dirname(__file__))
-    nano_filepath = os.path.join(dir_path, "..", "nano-2.2.6/src/nano")
+    nano_filepath = shutil.which("nano")
 
     if not os.path.exists(nano_filepath):
         # File path of installed nano
-        nano_filepath = "/usr/local/share/linux-story/nano"
+        nano_filepath = shutil.which("pico")
 
     if not os.path.exists(nano_filepath):
-        raise Exception("Cannot find nano")
+        raise Exception("Cannot find nano or pico")
 
 
     # Unsetting the LINES and COLUMNS variables because the
