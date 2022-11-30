@@ -58,9 +58,9 @@ setup(name='Linux Story',
       url='https://github.com/KanoComputing/linux-tutorial',
       packages=['linux_story',"kano_profile","kano"],
       package_dir={'linux_story': 'linux_story'},
-      scripts=['bin/linux-story'],
+      scripts=['bin/terminal-quest'],
       package_data={
-          'linux_story': story + ascii_assets
+          'linux_story': story + ascii_assets + file_creation
       },
       data_files=[
           (str(Path.home().joinpath('.terminal-quest/kano-profile/rules')), rules),
