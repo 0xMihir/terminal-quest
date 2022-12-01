@@ -11,9 +11,8 @@ from linux_story.story.terminals.terminal_nano import TerminalNano
 
 
 class TerminalChmod(TerminalNano):
-    terminal_commands = [
-        "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod"
-    ]
+    terminal_commands = ["exit", "ls", "cat", "cd",
+                         "mv", "echo", "mkdir", "nano", "chmod"]
 
     def do_chmod(self, line):
         shell_command(self._location.get_real_path(), line, "chmod")

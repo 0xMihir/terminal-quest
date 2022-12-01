@@ -17,9 +17,9 @@ class StepTemplateMv(StepTemplate):
 
 class Step1(StepTemplateMv):
     story = [
-        _("There is an old antique {{bb:.chest}} hidden under your bed, which you don't remember seeing before.\n"),
-        _("You walk into {{bb:my-room}} to have a closer look.\n"),
-        _("{{lb:Peer inside}} the {{bb:.chest}} and see what it contains.")
+        ("There is an old antique {{bb:.chest}} hidden under your bed, which you don't remember seeing before.\n"),
+        ("You walk into {{bb:my-room}} to have a closer look.\n"),
+        ("{{lb:Peer inside}} the {{bb:.chest}} and see what it contains.")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -35,18 +35,18 @@ class Step1(StepTemplateMv):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}")
+        ("{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 16, 2
 
 
 class Step2(StepTemplateMv):
     story = [
-        _("There are some scrolls, similar to what you found in the {{bb:.hidden-shelter}}. "
+        ("There are some scrolls, similar to what you found in the {{bb:.hidden-shelter}}. "
           "They could contain more powerful commands.\n"),
-        _("Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n")
+        ("Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -59,24 +59,24 @@ class Step2(StepTemplateMv):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}")
+        ("{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 16, 3
 
 
 class Step3(StepTemplateMv):
     story = [
-        _("I wonder if there's anything else hidden in this {{lb:.chest}}?"),
-        _("Have a {{lb:closer look}} for some more items.")
+        ("I wonder if there's anything else hidden in this {{lb:.chest}}?"),
+        ("Have a {{lb:closer look}} for some more items.")
     ]
 
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
 
     hints = [
-        _("{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any hidden items in the chest.}}")
+        ("{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any hidden items in the chest.}}")
     ]
 
     commands = [
@@ -86,26 +86,26 @@ class Step3(StepTemplateMv):
         'ls .chest -a'
     ]
 
-    def next(self):
+    def __next__(self):
         return 16, 4
 
 
 class Step4(StepTemplateMv):
     story = [
-        _("You suddenly notice a tiny stained {{lb:.note}}, scrumpled in the corner of the {{lb:.chest}}."),
-        _("What does it say?\n")
+        ("You suddenly notice a tiny stained {{lb:.note}}, scrumpled in the corner of the {{lb:.chest}}."),
+        ("What does it say?\n")
     ]
 
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
 
     hints = [
-        _("{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}")
+        ("{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}")
     ]
 
     commands = [
         "cat .chest/.note"
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 1

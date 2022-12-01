@@ -17,13 +17,13 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("You set off the firework!"),
-        _("{{gb:You learnt all the chmod commands.}}"),
+        ("You set off the firework!"),
+        ("{{gb:You learnt all the chmod commands.}}"),
         "",
-        _("{{lb:Thunk.}}"),
+        ("{{lb:Thunk.}}"),
         "",
-        _("Something new landed in front of you."),
-        _("{{lb:Look around}} to see what it is.")
+        ("Something new landed in front of you."),
+        ("{{lb:Look around}} to see what it is.")
     ]
     file_list = [
         {
@@ -34,20 +34,20 @@ class Step1(StepTemplateChmod):
         {
             "path": "~/woods/cave/chest/answer",
             "type": "file",
-            "permissions": 0644,
+            "permissions": 0o644,
             "contents": get_story_file("answer-cave")
         },
         {
             "path": "~/woods/cave/chest/riddle",
             "type": "file",
-            "permissions": 0644,
+            "permissions": 0o644,
             "contents": get_story_file("riddle-cave")
         }
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to see what landed in front of you.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to see what landed in front of you.}}")
     ]
     commands = [
         "ls",
@@ -55,36 +55,36 @@ class Step1(StepTemplateChmod):
         "ls ./"
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 2
 
 
 class Step2(StepTemplateChmod):
     story = [
-        _("There is a {{bb:chest}} in front of you."),
-        _("It is wrapped tightly by a big chain."),
-        _("{{lb:Look inside the chest.}}")
+        ("There is a {{bb:chest}} in front of you."),
+        ("It is wrapped tightly by a big chain."),
+        ("{{lb:Look inside the chest.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     hints = [
-        _("{{rb:Use}} {{yb:ls chest}} {{rb:to see inside the chest.}}")
+        ("{{rb:Use}} {{yb:ls chest}} {{rb:to see inside the chest.}}")
     ]
     commands = [
         "ls chest",
         "ls chest/"
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 3
 
 
 class Step3(StepTemplateChmod):
     story = [
-        _("The chain won't budge. You cannot see inside, nor access its contents."),
+        ("The chain won't budge. You cannot see inside, nor access its contents."),
         "",
-        _("Break the chain."),
-        _("{{lb:You'll need to combine all the chmod flags you've just learned: r, w, and x.}}")
+        ("Break the chain."),
+        ("{{lb:You'll need to combine all the chmod flags you've just learned: r, w, and x.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -98,14 +98,14 @@ class Step3(StepTemplateChmod):
             return True
         self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 37, 4
 
 
 class Step4(StepTemplateChmod):
     story = [
-        _("{{gb:You opened it!}}"),
-        _("Now {{lb:look inside}} the chest.")
+        ("{{gb:You opened it!}}"),
+        ("Now {{lb:look inside}} the chest.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -116,16 +116,16 @@ class Step4(StepTemplateChmod):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls chest/}} {{rb:to look inside the chest.}}")
+        ("{{rb:Use}} {{yb:ls chest/}} {{rb:to look inside the chest.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 5
 
 
 class Step5(StepTemplateChmod):
     story = [
-        _("You see a riddle, and an answer. {{lb:Examine}} them.")
+        ("You see a riddle, and an answer. {{lb:Examine}} them.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -133,16 +133,16 @@ class Step5(StepTemplateChmod):
         "cat chest/answer"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat chest/answer}} {{rb:to examine the answer in the chest.}}")
+        ("{{rb:Use}} {{yb:cat chest/answer}} {{rb:to examine the answer in the chest.}}")
     ]
 
     def check_command(self, last_user_input):
         if last_user_input == "cat chest/riddle":
             self.send_hint(
-                _("{{gb:That looks like the riddle the swordmaster asked you.}}")
+                ("{{gb:That looks like the riddle the swordmaster asked you.}}")
             )
             return
         return StepTemplateChmod.check_command(self, last_user_input)
 
-    def next(self):
+    def __next__(self):
         return 38, 1

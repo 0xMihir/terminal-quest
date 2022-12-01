@@ -30,10 +30,10 @@ class StepTemplateEcho(StepTemplate):
 
 class Step1(StepTemplateMv):
     story = [
-        _("You're in your room, standing in front of the {{bb:.chest}} containing all the commands "
+        ("You're in your room, standing in front of the {{bb:.chest}} containing all the commands "
           "you've learned so far.\n"),
-        _("Maybe something else is hidden in the house?\n"),
-        _("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is {{bb:..}}")
+        ("Maybe something else is hidden in the house?\n"),
+        ("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is {{bb:..}}")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -57,22 +57,22 @@ class Step1(StepTemplateMv):
         {"path": "~/my-house/parents-room/.safe/map"}
     ]
     hints = [
-        _("{{rb:Look behind you with}} {{yb:ls ../}}")
+        ("{{rb:Look behind you with}} {{yb:ls ../}}")
     ]
     commands = [
         "ls ..",
         "ls ../"
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 2
 
 
 class Step2(StepTemplateMv):
     story = [
-        _("You see doors to your {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:parents-room}}."),
-        _("We haven't checked out your parents' room properly yet.\n"),
-        _("{{lb:Go into your}} {{bb:parents-room}}.")
+        ("You see doors to your {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:parents-room}}."),
+        ("We haven't checked out your parents' room properly yet.\n"),
+        ("{{lb:Go into your}} {{bb:parents-room}}.")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -80,11 +80,11 @@ class Step2(StepTemplateMv):
 
     path_hints = {
         "~/my-house/my-room": {
-            "blocked": _("\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}")
+            "blocked": ("\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}")
         },
         "~/my-house": {
-            "not_blocked": _("\n{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}"),
-            "blocked": _("\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}")
+            "not_blocked": ("\n{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}"),
+            "blocked": ("\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}")
         }
     }
 
@@ -101,22 +101,22 @@ class Step2(StepTemplateMv):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         Step3()
 
-    def next(self):
+    def __next__(self):
         return 17, 3
 
 
 class Step3(StepTemplateMv):
     story = [
-        _("Look around {{lb:closely}}.")
+        ("Look around {{lb:closely}}.")
     ]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
 
     hints = [
-        _("{{rb:Use the command}} {{yb:ls -a}} {{rb:to look around closely.}}")
+        ("{{rb:Use the command}} {{yb:ls -a}} {{rb:to look around closely.}}")
     ]
     commands = [
         "ls -a",
@@ -127,14 +127,14 @@ class Step3(StepTemplateMv):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 17, 4
 
 
 class Step4(StepTemplateMv):
     story = [
-        _("There's a {{bb:.safe}}!\n"),
-        _("Maybe there's something useful in here. {{lb:Look inside}} the {{bb:.safe}}.")
+        ("There's a {{bb:.safe}}!\n"),
+        ("Maybe there's something useful in here. {{lb:Look inside}} the {{bb:.safe}}.")
     ]
 
     commands = [
@@ -146,25 +146,25 @@ class Step4(StepTemplateMv):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        _("{{rb:Look in the}} {{bb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}"),
-        _("{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}")
+        ("{{rb:Look in the}} {{bb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}"),
+        ("{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 5
 
 
 class Step5(StepTemplateMv):
     story = [
-        _("So you found your {{bb:Mum's diary}}?"),
-        _("You probably shouldn't read it...\n"),
-        _("What else is here? Let's {{lb:examine}} that {{bb:map}}.")
+        ("So you found your {{bb:Mum's diary}}?"),
+        ("You probably shouldn't read it...\n"),
+        ("What else is here? Let's {{lb:examine}} that {{bb:map}}.")
     ]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        _("{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{bb:map}}{{rb:.}}"),
-        _("{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}")
+        ("{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{bb:map}}{{rb:.}}"),
+        ("{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}")
     ]
 
     commands = "cat .safe/map"
@@ -172,47 +172,47 @@ class Step5(StepTemplateMv):
     def check_command(self, line):
         checked_diary = load_app_state_variable("linux-story", "checked_mums_diary")
         if line == 'cat .safe/mums-diary' and not checked_diary:
-            self.send_hint(_("\n{{rb:You read your Mum\'s diary!}} {{ob:Your nosiness has been recorded.}}"))
+            self.send_hint(("\n{{rb:You read your Mum\'s diary!}} {{ob:Your nosiness has been recorded.}}"))
             save_app_state_variable("linux-story", "checked_mums_diary", True)
             return False
 
         return StepTemplateMv.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 17, 6
 
 
 class Step6(StepTemplateMv):
     story = [
-        _("So there's a farm around here?"),
-        _("Apparently it's not far from our house, just off the windy road...\n"),
-        _("What is this {{bb:ECHO}} note? {{lb:Examine}} the {{bb:ECHO}} note.")
+        ("So there's a farm around here?"),
+        ("Apparently it's not far from our house, just off the windy road...\n"),
+        ("What is this {{bb:ECHO}} note? {{lb:Examine}} the {{bb:ECHO}} note.")
     ]
 
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
-        _("{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} {{rb:note.}}"),
-        _("{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}")
+        ("{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} {{rb:note.}}"),
+        ("{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 17, 7
 
 
 class Step7(StepTemplateEcho):
     story = [
-        _("So the note says {{Bb:\"echo hello - will make you say hello\"}}"),
-        _("Let's test this out. \n"),
+        ("So the note says {{Bb:\"echo hello - will make you say hello\"}}"),
+        ("Let's test this out. \n"),
     ]
     story += wrap_in_box([
-        _("{{gb:New Power}}: {{yb:echo}} followed by words"),
-        _("lets you {{lb:speak}}"),
+        ("{{gb:New Power}}: {{yb:echo}} followed by words"),
+        ("lets you {{lb:speak}}"),
     ])
 
     hints = [
-        _("{{rb:Use the command}} {{yb:echo hello}}")
+        ("{{rb:Use the command}} {{yb:echo hello}}")
     ]
     commands = [
         "echo hello",
@@ -223,5 +223,5 @@ class Step7(StepTemplateEcho):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
 
-    def next(self):
+    def __next__(self):
         return 18, 1

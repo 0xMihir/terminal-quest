@@ -17,7 +17,7 @@ from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 
 
 class TerminalNano(TerminalMkdir):
-    terminal_commands = ["ls", "cat", "cd", "mv", "echo", "mkdir", "nano"]
+    terminal_commands = ["exit", "ls", "cat", "cd", "mv", "echo", "mkdir", "nano"]
 
     def __init__(self, step, location, dirs_to_attempt, client):
         self._step_nano = step.get_nano_logic()

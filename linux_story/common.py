@@ -9,27 +9,18 @@
 import os
 import json
 
+
 # setting up directories
 current_dir = os.path.abspath(os.path.dirname(__file__))
 
-# media dir
-media_local = os.path.join(current_dir, '../media')
-media_usr = '/usr/share/linux-story/media'
 
-if os.path.exists(media_local):
-    common_media_dir = media_local
-elif os.path.exists(media_usr):
-    common_media_dir = media_usr
-else:
-    raise Exception('Neither local nor usr media dir found!')
 
 css_dir = os.path.join(current_dir, 'gtk3', 'css')
 
 ascii_assets_dir = os.path.join(current_dir, 'ascii_assets')
 localized_story_files_dir_pattern = os.path.join(ascii_assets_dir, 'locale', '{}', 'story_files')
 fallback_story_files_dir = os.path.join(ascii_assets_dir, 'story_files')
-sounds_dir = os.path.join(common_media_dir, 'sounds')
-images_dir = os.path.join(common_media_dir, 'images')
+
 
 # Constants
 
@@ -55,7 +46,8 @@ def get_max_challenge_number():
     '''
 
     # Hardcoded path, perhaps change it later
-    path = "/usr/share/kano-profile/rules/app_profiles.json"
+    path = os.path.join(home_folder, ".terminal-quest/kano-profile/rules/app_profiles.json")
+
     f = open(path)
     str_data = f.read()
     f.close()

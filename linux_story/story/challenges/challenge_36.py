@@ -5,6 +5,7 @@
 #
 # A chapter of the story
 
+from linux_story.Animation import Animation
 from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_commands
@@ -17,8 +18,8 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("The bird dropped a {{bb:scroll}} in the {{bb:cage}}."),
-        _("{{lb:Examine}} the scroll.")
+        ("The bird dropped a {{bb:scroll}} in the {{bb:cage}}."),
+        ("{{lb:Examine}} the scroll.")
     ]
 
     start_dir = "~/woods/cave"
@@ -27,7 +28,7 @@ class Step1(StepTemplateChmod):
         "cat cage/scroll"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat cage/scroll}} {{rb:to examine the scroll.}}")
+        ("{{rb:Use}} {{yb:cat cage/scroll}} {{rb:to examine the scroll.}}")
     ]
     file_list = [
         {
@@ -39,13 +40,13 @@ class Step1(StepTemplateChmod):
         "~/woods/cave/bird"
     ]
 
-    def next(self):
+    def __next__(self):
         return 36, 2
 
 
 class Step2(StepTemplateChmod):
     story = [
-        _("Follow the instructions. Use {{yb:chmod +x}} on the {{bb:lighter}} in the {{bb:locked-room}}.")
+        ("Follow the instructions. Use {{yb:chmod +x}} on the {{bb:lighter}} in the {{bb:locked-room}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -53,20 +54,20 @@ class Step2(StepTemplateChmod):
         "chmod +x locked-room/lighter"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:chmod +x locked-room/lighter}} {{rb:to activate the lighter.}}")
+        ("{{rb:Use}} {{yb:chmod +x locked-room/lighter}} {{rb:to activate the lighter.}}")
     ]
     highlighted_commands = "chmod"
 
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 36, 3
 
 
 class Step3(StepTemplateChmod):
     story = [
-        _("{{lb:Look in the locked-room}} to see what happened to the lighter.")
+        ("{{lb:Look in the locked-room}} to see what happened to the lighter.")
     ]
 
     start_dir = "~/woods/cave"
@@ -78,17 +79,17 @@ class Step3(StepTemplateChmod):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look in the locked-room.}}")
+        ("{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look in the locked-room.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 36, 4
 
 
 class Step4(StepTemplateChmod):
     story = [
-        _("The lighter went {{gb:bright green}} after you activated it."),
-        _("Now use it with {{yb:./locked-room/lighter}}")
+        ("The lighter went {{gb:bright green}} after you activated it."),
+        ("Now use it with {{yb:./locked-room/lighter}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -97,5 +98,5 @@ class Step4(StepTemplateChmod):
         "./locked-room/lighter"
     ]
 
-    def next(self):
+    def __next__(self):
         return 37, 1

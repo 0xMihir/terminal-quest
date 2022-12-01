@@ -18,61 +18,61 @@ class StepTemplateCd(StepTemplate):
 
 class Step1(StepTemplateCd):
     story = [
-        _("Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}")
+        ("Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
-    hints = [_("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
+    hints = [("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
-    def next(self):
+    def __next__(self):
         return 6, 2
 
 
 class Step2(StepTemplateCd):
     story = [
-        _("{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, he never leaves home without telling me first.\""),
-        _("\"Maybe he went to that town meeting with the Mayor, the one they were talking about on the news. "
+        ("{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, he never leaves home without telling me first.\""),
+        ("\"Maybe he went to that town meeting with the Mayor, the one they were talking about on the news. "
           "Why don't you go and check? I'll stay here in case he comes back.\"}}\n"),
-        _("Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself.")
+        ("Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~"
     commands = "cd"
-    hints = [_("{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}")]
+    hints = [("{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}")]
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 6, 3
 
 
 class Step3(StepTemplateCd):
     story = [
-        _("You're out of the house and on the long windy road called Tilde, or {{bb:~}}"),
-        _("{{lb:Look around}} again to see where to go next.")
+        ("You're out of the house and on the long windy road called Tilde, or {{bb:~}}"),
+        ("{{lb:Look around}} again to see where to go next.")
     ]
     start_dir = "~"
     end_dir = "~"
     commands = "ls"
-    hints = [_("{{rb:Stuck? Type}} {{yb:ls}} {{rb:to look around.}}")]
+    hints = [("{{rb:Stuck? Type}} {{yb:ls}} {{rb:to look around.}}")]
 
-    def next(self):
+    def __next__(self):
         return 6, 4
 
 
 class Step4(StepTemplateCd):
     story = [
-        _("You can see a {{bb:town}} in the distance! Let's {{lb:go}} there using {{lb:cd}}.")
+        ("You can see a {{bb:town}} in the distance! Let's {{lb:go}} there using {{lb:cd}}.")
     ]
     start_dir = "~"
     end_dir = "~/town"
     commands = ["cd town", "cd town/"]
-    hints = [_("{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}")]
+    hints = [("{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}")]
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 7, 1

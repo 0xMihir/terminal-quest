@@ -19,32 +19,32 @@ class StepTemplateCd(StepTemplate):
 
 class Step1(StepTemplateCd):
     story = [
-        _("Oh no! Check your {{bb:Mum}} is alright.\n"),
-        _("Type {{yb:cd ..}} to leave {{bb:town}}.")
+        ("Oh no! Check your {{bb:Mum}} is alright.\n"),
+        ("Type {{yb:cd ..}} to leave {{bb:town}}.")
     ]
     start_dir = "~/town"
     end_dir = "~"
     commands = ["cd ..", "cd ../", "cd"]
-    hints = [_("{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}")]
+    hints = [("{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}")]
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 9, 2
 
 
 class Step2(StepTemplateCd):
     story = [
-        _("{{pb:Ding. Dong.}}\n"),
-        _("Type {{yb:cd my-house/kitchen}} to go straight to the {{bb:kitchen}}.\n"),
-        _("{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}")
+        ("{{pb:Ding. Dong.}}\n"),
+        ("Type {{yb:cd my-house/kitchen}} to go straight to the {{bb:kitchen}}.\n"),
+        ("{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}")
     ]
     start_dir = "~"
     end_dir = "~/my-house/kitchen"
     commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
     hints = [
-        _("{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}")
+        ("{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}")
     ]
     file_list = [
         {
@@ -58,35 +58,35 @@ class Step2(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 9, 3
 
 
 class Step3(StepTemplateCd):
     story = [
-        _("Take a {{lb:look around}} to make sure everything is OK.")
+        ("Take a {{lb:look around}} to make sure everything is OK.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it should be.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it should be.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 9, 4
 
 
 class Step4(StepTemplateCd):
     story = [
-        _("Oh no - {{bb:Mum}} has vanished too!"),
-        _("Wait, there's another {{bb:note}}.\n"),
-        _("Use {{yb:cat}} to {{lb:read}} the {{bb:note}}.")
+        ("Oh no - {{bb:Mum}} has vanished too!"),
+        ("Wait, there's another {{bb:note}}.\n"),
+        ("Use {{yb:cat}} to {{lb:read}} the {{bb:note}}.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat note"
-    hints = [_("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")]
+    hints = [("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")]
 
-    def next(self):
+    def __next__(self):
         return 10, 1

@@ -37,7 +37,7 @@ library = {
                 {
                     "challenge": 42,
                     "step": 3,
-                    "permissions": 0755
+                    "permissions": 0o755
                 }
             ],
             "children": [

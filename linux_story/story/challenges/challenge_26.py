@@ -16,15 +16,15 @@ from linux_story.step_helper_functions import unblock_cd_commands
 
 class Step1(StepTemplateMkdir):
     story = [
-        _("You are back in town. {{bb:Eleanor}} waves her arms and points at a building in the distance."),
-        _("\n{{lb:Look around}} to see where {{bb:Eleanor}} is pointing.")
+        ("You are back in town. {{bb:Eleanor}} waves her arms and points at a building in the distance."),
+        ("\n{{lb:Look around}} to see where {{bb:Eleanor}} is pointing.")
     ]
 
     start_dir = "~/town/east"
     end_dir = "~/town/east"
 
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
     commands = [
@@ -40,16 +40,16 @@ class Step1(StepTemplateMkdir):
             "type": "file"
         }
     ]
-    companion_speech = _("Eleanor: {{Bb:The library is over there!}}")
+    companion_speech = ("Eleanor: {{Bb:The library is over there!}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 2
 
 
 class Step2(StepTemplateMkdir):
     story = [
-        _("You see the {{bb:library}} ahead."),
-        _("Eleanor: {{Bb:\"There it is! The}} {{bb:library}} " +\
+        ("You see the {{bb:library}} ahead."),
+        ("Eleanor: {{Bb:\"There it is! The}} {{bb:library}} " +\
         "{{Bb:is right there! Let's}} {{lb:go inside.}}{{Bb:\"}}")
     ]
 
@@ -57,28 +57,28 @@ class Step2(StepTemplateMkdir):
     end_dir = "~/town/east/library"
 
     hints = [
-        _("{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}")
+        ("{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}")
     ]
-    companion_speech = _("Eleanor: {{Bb:I love the library! Let's go inside!}}")
+    companion_speech = ("Eleanor: {{Bb:I love the library! Let's go inside!}}")
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 26, 3
 
 
 class Step3(StepTemplateMkdir):
     story = [
-        _("{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n"),
-        _("{{lb:Look around}} the {{bb:library}}.")
+        ("{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n"),
+        ("{{lb:Look around}} the {{bb:library}}.")
     ]
 
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"
 
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     commands = [
         "ls",
@@ -91,25 +91,25 @@ class Step3(StepTemplateMkdir):
             "contents": get_story_file("Eleanor")
         }
     ]
-    companion_speech = _("Eleanor: {{Bb:It's all echo-y-y-y-y..}}")
+    companion_speech = ("Eleanor: {{Bb:It's all echo-y-y-y-y..}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 4
 
 
 class Step4(StepTemplateMkdir):
     story = [
-        _("You're in a corridor leading to two clearly " +\
+        ("You're in a corridor leading to two clearly " +\
         "labelled doors. " +\
         "One has the sign {{bb:public-section}}, the other " +\
         "{{bb:private-section}}.\n"),
 
-        _("Eleanor: {{Bb:\"There used to be a librarian here."),
+        ("Eleanor: {{Bb:\"There used to be a librarian here."),
 
-        _("She would tell me off for trying to look in the}} " +\
+        ("She would tell me off for trying to look in the}} " +\
         "{{bb:private-section}}."),
 
-        _("{{Bb:What do you think is in there? Let's try and}} " +\
+        ("{{Bb:What do you think is in there? Let's try and}} " +\
         "{{lb:look inside}}{{Bb:.\"}}")
     ]
 
@@ -122,24 +122,24 @@ class Step4(StepTemplateMkdir):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the " +\
+        ("{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the " +\
         "private-section of the library.}}")
     ]
-    companion_speech = _("Eleanor: {{Bb:What's in the private-section?}}")
+    companion_speech = ("Eleanor: {{Bb:What's in the private-section?}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 5
 
 
 class Step5(StepTemplateMkdir):
 
     story = [
-        _("Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\""),
+        ("Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\""),
 
-        _("\"Let's see if we can find something useful in the}} " +\
+        ("\"Let's see if we can find something useful in the}} " +\
         "{{bb:public section.}}{{Bb:\"}}"),
 
-        _("\nUse {{lb:ls}} to look in the {{bb:public-section}}.")
+        ("\nUse {{lb:ls}} to look in the {{bb:public-section}}.")
     ]
 
     start_dir = "~/town/east/library"
@@ -151,23 +151,23 @@ class Step5(StepTemplateMkdir):
         "ls -a public-section/"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}"),
-        _("{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-" +\
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}"),
+        ("{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-" +\
         "section.}}")
     ]
-    companion_speech = _("Eleanor: {{Bb:What's in the public-section?}}")
+    companion_speech = ("Eleanor: {{Bb:What's in the public-section?}}")
 
-    def next(self):
+    def __next__(self):
         return 26, 6
 
 
 class Step6(StepTemplateMkdir):
     story = [
-        _("Eleanor: {{Bb:\"Wow, all the commands have disappeared."),
-        _("I wonder if people have been stealing them?\"\n}}"),
+        ("Eleanor: {{Bb:\"Wow, all the commands have disappeared."),
+        ("I wonder if people have been stealing them?\"\n}}"),
 
-        _("{{Bb:\"What is that}} {{lb:NANO}} {{Bb:paper?\"}}\n"),
-        _("{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}")
+        ("{{Bb:\"What is that}} {{lb:NANO}} {{Bb:paper?\"}}\n"),
+        ("{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}")
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"
@@ -175,39 +175,39 @@ class Step6(StepTemplateMkdir):
         "cat public-section/NANO"
     ]
     hints = [
-        _("{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}")
+        ("{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}")
     ]
     companion_speech = (
-        _("Eleanor: {{Bb:The library should probably have introduced late " +\
+        ("Eleanor: {{Bb:The library should probably have introduced late " +\
         "fees.}}")
     )
 
-    def next(self):
+    def __next__(self):
         return 26, 7
 
 
 class Step7(StepTemplateMkdir):
     story = [
-        _("Eleanor: {{Bb:\"So nano allows you to edit files?}}"),
+        ("Eleanor: {{Bb:\"So nano allows you to edit files?}}"),
 
-        _("{{Bb:Maybe we could use this to fix that}} " +\
+        ("{{Bb:Maybe we could use this to fix that}} " +\
         "{{yb:best-horn-in-the-world.sh}} {{Bb:script?\"}}\n"),
 
-        _("{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}")
+        ("{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}")
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/shed-shop"
     companion_speech = (
-        _("Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}")
+        ("Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}")
     )
 
     path_hints = {
         "~/town/east/library": {
-            "blocked": _("\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}")
+            "blocked": ("\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}")
         },
         "~/town/east": {
-            "not_blocked": _("\n{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}"),
-            "blocked": _("\n{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}")
+            "not_blocked": ("\n{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}"),
+            "blocked": ("\n{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}")
         }
     }
 
@@ -224,5 +224,5 @@ class Step7(StepTemplateMkdir):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 27, 1

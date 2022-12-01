@@ -6,7 +6,6 @@
 # A chapter of the story
 from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.sound_manager import SoundManager
 from linux_story.story.terminals.terminal_nano import TerminalNano
 
 
@@ -19,7 +18,7 @@ class StepTemplateNano(StepTemplate):
 
 class Step1(StepTemplateNano):
     story = [
-        _("You've arrived in the {{bb:shed-shop}}. {{lb:Look around.}}")
+        ("You've arrived in the {{bb:shed-shop}}. {{lb:Look around.}}")
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
@@ -28,43 +27,43 @@ class Step1(StepTemplateNano):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 31, 2
 
 
 class Step2(StepTemplateNano):
     story = [
-        _("Huh, you can't see {{bb:Bernard}} anywhere."),
+        ("Huh, you can't see {{bb:Bernard}} anywhere."),
 
-        _("I wonder where he went.\n"),
+        ("I wonder where he went.\n"),
 
-        _("Maybe he's in his {{bb:basement}}? Let's {{lb:go}} down there.")
+        ("Maybe he's in his {{bb:basement}}? Let's {{lb:go}} down there.")
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop/basement"
     hints = [
-        _("{{rb:Go into the basement with}} {{yb:cd basement}}")
+        ("{{rb:Go into the basement with}} {{yb:cd basement}}")
     ]
 
     def check_command(self, line):
         if line == "cat Bernards-hat":
-            self.send_hint(_("\nIs that Bernard\'s hat? Strange he left it behind..."))
+            self.send_hint(("\nIs that Bernard\'s hat? Strange he left it behind..."))
         else:
             return StepTemplateNano.check_command(self, line)
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 31, 3
 
 
 class Step3(StepTemplateNano):
     story = [
-        _("You walked into {{bb:Bernard}}'s basement. {{lb:Look around.}}")
+        ("You walked into {{bb:Bernard}}'s basement. {{lb:Look around.}}")
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
@@ -73,22 +72,18 @@ class Step3(StepTemplateNano):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
+        ("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
-    def _run_at_start(self):
-        sound_manager = SoundManager()
-        sound_manager.play_sound('steps')
-
-    def next(self):
+    def __next__(self):
         return 31, 4
 
 
 class Step4(StepTemplateNano):
     story = [
-        _("You see what looks like another script and a couple of diaries."),
+        ("You see what looks like another script and a couple of diaries."),
         "",
-        _("Shall we {{lb:examine}} them?")
+        ("Shall we {{lb:examine}} them?")
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
@@ -98,7 +93,7 @@ class Step4(StepTemplateNano):
         "cat photocopier.sh"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}")
+        ("{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}")
     ]
 
     def check_command(self, line):
@@ -106,10 +101,10 @@ class Step4(StepTemplateNano):
             self.commands.remove(line)
 
             if not self.commands:
-                text = _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
+                text = ("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
                 self.send_hint(text)
             else:
-                text = _("\n{{gb:Well done! Look at the other objects.}}")
+                text = ("\n{{gb:Well done! Look at the other objects.}}")
                 self.send_hint(text)
 
         elif not line and not self.commands:
@@ -118,5 +113,5 @@ class Step4(StepTemplateNano):
         else:
             return StepTemplateNano.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         return 32, 1

@@ -7,8 +7,8 @@ from linux_story.PlayerLocation import generate_real_path
 
 
 class StepNano:
-    SAVING_NANO_PROMPT = _("Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? ")
-    SAVE_FILENAME = _("File Name to Write")
+    SAVING_NANO_PROMPT = ("Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? ")
+    SAVE_FILENAME = ("File Name to Write")
 
     def __init__(self, client, step, location):
         self.__client = client
@@ -99,16 +99,16 @@ class StepNano:
         elif self.get_on_filename_screen() and self.get_nano_content().strip() == self.get_goal_nano_end_content():
             if self.get_editable() == self.get_goal_nano_save_name():
                 hint = \
-                    _("\n{{gb:Press}} {{ob:Enter}} {{gb:to confirm the filename.}}")
+                    ("\n{{gb:Press}} {{ob:Enter}} {{gb:to confirm the filename.}}")
             else:
                 hint = \
-                    _("\n{{gb:Type}} {{yb:%s}} {{gb:and press}} {{yb:Enter}}") % self.get_goal_nano_save_name()
+                    ("\n{{gb:Type}} {{yb:%s}} {{gb:and press}} {{yb:Enter}}") % self.get_goal_nano_save_name()
             self.send_hint(hint)
             return False
 
         elif self.get_on_filename_screen():
             hint = (
-                _("\n{{ob:Oops, your text isn't correct. Press}} {{yb:Ctrl C}} {{ob:to cancel.}}")
+                ("\n{{ob:Oops, your text isn't correct. Press}} {{yb:Ctrl C}} {{ob:to cancel.}}")
             )
             self.send_hint(hint)
             return False
@@ -116,18 +116,18 @@ class StepNano:
         elif self.get_save_prompt_showing():
             if self.get_nano_content().strip() == self.get_goal_nano_end_content():
                 hint = (
-                    _("\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to save.}}")
+                    ("\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to save.}}")
                 )
             else:
                 hint = (
-                    _("\n{{rb:Your text is not correct! Press}} {{yb:N}} {{rb:to exit nano.}}")
+                    ("\n{{rb:Your text is not correct! Press}} {{yb:N}} {{rb:to exit nano.}}")
                 )
             self.send_hint(hint)
             return False
 
         elif self.get_nano_content().strip() == self.get_goal_nano_end_content():
             hint = \
-                _("\n{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}") \
+                ("\n{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}") \
                 % self.get_goal_nano_end_content()
             self.send_hint(hint)
             return False
@@ -150,13 +150,13 @@ class StepNano:
                 return True
             else:
                 self.send_hint(
-                    _("\n{{rb:Your text is not correct! Type}} {{yb:nano %s}} {{rb:to try again.}}")
+                    ("\n{{rb:Your text is not correct! Type}} {{yb:nano %s}} {{rb:to try again.}}")
                     % self.get_goal_nano_save_name()
                 )
                 return False
         else:
             self.send_hint(
-                _("\n{{rb:The file path}} {{lb:%s}} {{rb:does not exist - did you save your file correctly?}}")
+                ("\n{{rb:The file path}} {{lb:%s}} {{rb:does not exist - did you save your file correctly?}}")
                 % end_path)
             return False
 
@@ -173,18 +173,19 @@ class StepNano:
 
         # TODO: fix this line. Should not compare directly to the save-anme, but instead the full path
         if not line == self.get_goal_nano_save_name():
-            hint = _(
+            hint = (
                 "\n{{rb:Oops, you opened the wrong file! Press}} " +
                 "{{yb:Ctrl X}} {{rb:to exit.}}"
             )
 
         elif self.get_goal_nano_end_content():
-            hint = _(
+            hint = (
                 "\n{{gb:You've opened nano! Now make sure the file says}} " +
                 "{{yb:%s}}{{gb:. If you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
             ) % self.get_goal_nano_end_content()
 
         self.send_hint(hint)
+        time.sleep(2)
 
     def __cancelled_save(self):
         """

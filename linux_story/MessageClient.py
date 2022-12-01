@@ -9,28 +9,34 @@
 from kano.logging import logger
 import json
 import socket
-
+from .helper_functions import colorize_string
 
 class MessageClient:
     HOST = "localhost"
     PORT = 9959
 
     def __init__(self):
+        return
         self.__server_busy = False
 
     def exit(self):
+        return
         self.__send_message({"exit": 1})
 
     def set_dark_theme(self):
+        return
         self.__send_message({"dark": True})
 
     def set_normal_theme(self):
+        return
         self.__send_message({"dark": False})
 
     def send_hint(self, string):
-        self.send_text(string)
+        print(colorize_string(string))
+        # self.send_text(string)
 
     def send_start_challenge_data(self, story, challenge, spells, highlighted, xp, print_text):
+        return
         data = {
             "story": story,
             "challenge": challenge,
@@ -44,10 +50,12 @@ class MessageClient:
         self.__send_message(data)
 
     def send_text(self, string):
+        return
         if not self.__server_busy:
             self.__send_message({'hint': string})
 
     def __send_message(self, data):
+        return
         self.__server_busy = True
         json_data = json.dumps(data)
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -63,6 +71,7 @@ class MessageClient:
             sock.close()
 
     def finish_if_server_ready(self, other_condition):
+        return other_condition
         logger.debug("server_busy = {}".format(self.__server_busy))
         logger.debug('other_condition = {}'.format(other_condition))
         will_finish = (not self.__server_busy and other_condition)

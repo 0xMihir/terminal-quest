@@ -2,12 +2,12 @@ from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.terminals.terminal_nano import TerminalNano
 
-bernard_text = _("Bernard stopped you looking in the basement!")
+bernard_text = ("Bernard stopped you looking in the basement!")
 
 
 def bernard_autocomplete(completions):
     if "photocopier.sh" in completions:
-        print "\n" + bernard_text
+        print(("\n" + bernard_text))
         return []
     else:
         return completions
@@ -35,7 +35,7 @@ class StepTemplateEleanorBernard(StepTemplate):
 
     def block_command(self, line):
         if "basement" in line and ("ls" in line or "cat" in line):
-            print bernard_text
+            print(bernard_text)
             return True
         else:
             return StepTemplate.block_command(self, line)

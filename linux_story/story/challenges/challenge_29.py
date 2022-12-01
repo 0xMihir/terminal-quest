@@ -15,23 +15,23 @@ from linux_story.helper_functions import record_user_interaction
 story_replies = {
     "echo 1": [
         {
-            "user": _("\"Why is the private section in the library locked?\""),
+            "user": ("\"Why is the private section in the library locked?\""),
             "clara": \
-                _("Clara: {{Bb:\"It contains some dangerous information.\"" +\
+                ("Clara: {{Bb:\"It contains some dangerous information.\"" +\
                 "\n\"...I'm sorry, I shouldn't say more. The head librarian " +\
                 "was quite concerned that no one should go in. He was the " +\
                 "only one who could lock and unlock it.\"}}")
         },
         {
-            "user": _("\"How did he lock it?\""),
+            "user": ("\"How did he lock it?\""),
             "clara": \
-                _("Clara: {{Bb:\"I don't know, it's a very special lock. But, I think he learnt the secrets of the "
+                ("Clara: {{Bb:\"I don't know, it's a very special lock. But, I think he learnt the secrets of the "
                   "lock from a masked swordmaster living outside of town.\"}}")
         },
         {
-            "user": _("\"Where would I find this masked swordmaster?\""),
+            "user": ("\"Where would I find this masked swordmaster?\""),
             "clara": \
-                _("Clara: {{Bb:\"He said the}} " +\
+                ("Clara: {{Bb:\"He said the}} " +\
                 "{{bb:masked swordmaster}} {{Bb:lived in the woods.\"}}" +\
                 "\n{{Bb:\"I presume he meant the woods just off the}} " +\
                 "{{lb:Windy Road}}{{Bb:? The one " +\
@@ -41,48 +41,48 @@ story_replies = {
 
     "echo 2": [
         {
-            "user": _("\"Why are you hiding down here?\""),
+            "user": ("\"Why are you hiding down here?\""),
             "clara": \
-                _("Clara: {{Bb:\"I heard a bell ring, and saw the " +\
+                ("Clara: {{Bb:\"I heard a bell ring, and saw the " +\
                 "lead librarian disappear in front of me. I was " +\
                 "so scared I ran away, and found this}} {{bb:.cellar}}" +\
                 "{{Bb:.\"}}")
         },
         {
-            "user": _("\"Do you have any relatives in town?\""),
+            "user": ("\"Do you have any relatives in town?\""),
             "clara": \
-                _("Clara: {{Bb:\"I have a couple of children, a}} " +\
+                ("Clara: {{Bb:\"I have a couple of children, a}} " +\
                 "{{bb:little-boy}} {{Bb:and a}} " +\
                 "{{bb:young-girl}}{{Bb:. I hope they are alright.\"}}")
         },
         {
-            "user": _("\"Why is the library so empty?\""),
+            "user": ("\"Why is the library so empty?\""),
             "clara": \
-                _("Clara: {{Bb:\"We should have introduced late fees a long " +\
+                ("Clara: {{Bb:\"We should have introduced late fees a long " +\
                 "time ago...\"}}")
         }
     ],
 
     "echo 3": [
         {
-            "user": _("\"Do you know any other people in town?\""),
+            "user": ("\"Do you know any other people in town?\""),
             "clara": \
-                _("Clara: {{Bb:\"There's a man I don't trust that runs the}} " +\
+                ("Clara: {{Bb:\"There's a man I don't trust that runs the}} " +\
                 "{{bb:shed-shop}}{{Bb:. I think his name is}} {{bb:Bernard}}{{Bb:.\"}}")
         },
         {
-            "user": _("\"Why don't you like Bernard?\""),
+            "user": ("\"Why don't you like Bernard?\""),
             "clara": \
-                _("Clara: {{Bb:\"He makes very simple tools and charges a fortune " +\
+                ("Clara: {{Bb:\"He makes very simple tools and charges a fortune " +\
                 "for them.}}" +\
                 "\n{{Bb:His father was a very clever man and spent all " +\
                 "his time in the library reading up commands. He became a " +\
                 "successful business man as a result.\"}}")
         },
         {
-            "user": _("\"What happened to Bernard's father?\""),
+            "user": ("\"What happened to Bernard's father?\""),
             "clara": \
-                _("Clara: {{Bb:\"People aren't sure, he disappeared one day. " +\
+                ("Clara: {{Bb:\"People aren't sure, he disappeared one day. " +\
                 "It was " +\
                 "assumed he had died. I saw him leave the library the day " +\
                 "he went missing, " +\
@@ -97,13 +97,13 @@ def create_story(step):
     print_text = ""
 
     if step > 1:
-        print_text = _("{{yb:%s}}") % story_replies["echo 1"][step - 2]["user"]
+        print_text = ("{{yb:%s}}") % story_replies["echo 1"][step - 2]["user"]
 
     story = [
         story_replies["echo 1"][step - 2]["clara"],
-        _("\n{{yb:1: %s}}") % story_replies["echo 1"][step - 1]["user"],
-        _("{{yb:2: %s}}") % story_replies["echo 2"][0]["user"],
-        _("{{yb:3: %s}}") % story_replies["echo 3"][0]["user"]
+        ("\n{{yb:1: %s}}") % story_replies["echo 1"][step - 1]["user"],
+        ("{{yb:2: %s}}") % story_replies["echo 2"][0]["user"],
+        ("{{yb:3: %s}}") % story_replies["echo 3"][0]["user"]
     ]
 
     return print_text, story
@@ -126,7 +126,7 @@ class StepNanoStory(StepTemplateNano):
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/restaurant/.cellar"
     hints = [
-        _("{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}")
+        ("{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}")
     ]
     step_number = None
 
@@ -151,7 +151,7 @@ class StepNanoStory(StepTemplateNano):
                     record_user_interaction(self, state_name)
                 else:
                     self.send_hint(
-                        _("\n{{rb:You've already asked Clara that. Ask her something else.}}")
+                        ("\n{{rb:You've already asked Clara that. Ask her something else.}}")
                     )
 
         else:
@@ -163,24 +163,24 @@ class StepNanoStory(StepTemplateNano):
 
 class Step1(StepNanoStory):
     story = [
-        _("Clara: {{Bb:\"What? Who are you?\"}}"),
+        ("Clara: {{Bb:\"What? Who are you?\"}}"),
 
-        _("\nEleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:%s}}{{Bb:.}}" +\
+        ("\nEleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:%s}}{{Bb:.}}" +\
         " {{Bb:I recognise you! You used to work in the library!\"}}")\
         % os.environ["LOGNAME"],
 
-        _("\nClara: {{Bb:\"...ah, Eleanor! Yes, I remember you, you used to " +\
+        ("\nClara: {{Bb:\"...ah, Eleanor! Yes, I remember you, you used to " +\
         "come in almost everyday.\"}}"),
 
         # Options
-        _("\n{{yb:1: \"Why is the private section in the library locked?\"}}"),
-        _("{{yb:2: \"Why are you hiding down here?\"}}"),
-        _("{{yb:3: \"Do you know about any other people in town?\"}}"),
+        ("\n{{yb:1: \"Why is the private section in the library locked?\"}}"),
+        ("{{yb:2: \"Why are you hiding down here?\"}}"),
+        ("{{yb:3: \"Do you know about any other people in town?\"}}"),
 
-        _("\nUse {{yb:echo}} to ask {{bb:Clara}} a question.")
+        ("\nUse {{yb:echo}} to ask {{bb:Clara}} a question.")
     ]
 
-    companion_speech = _("Eleanor: {{Bb:\"I'm not scared anymore, I like Clara.\"}}")
+    companion_speech = ("Eleanor: {{Bb:\"I'm not scared anymore, I like Clara.\"}}")
 
     def _run_at_start(self):
         self.echo_hit = {
@@ -191,12 +191,12 @@ class Step1(StepNanoStory):
     def check_command(self, last_user_input):
         return self.story_check_command(last_user_input, self.echo_hit)
 
-    def next(self):
+    def __next__(self):
         return 29, 2
 
 
 class Step2(StepNanoStory):
-    companion_speech = _("Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}")
+    companion_speech = ("Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}")
 
     def _run_at_start(self):
         self.echo_hit = {
@@ -210,12 +210,12 @@ class Step2(StepNanoStory):
     def check_command(self, last_user_input):
         return self.story_check_command(last_user_input, self.echo_hit)
 
-    def next(self):
+    def __next__(self):
         return 29, 3
 
 
 class Step3(StepNanoStory):
-    companion_speech = _("Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}")
+    companion_speech = ("Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}")
 
     def _run_at_start(self):
         self.echo_hit = {
@@ -229,28 +229,28 @@ class Step3(StepNanoStory):
     def check_command(self, last_user_input):
         return self.story_check_command(last_user_input, self.echo_hit)
 
-    def next(self):
+    def __next__(self):
         return 29, 4
 
 
 class Step4(StepNanoStory):
     last_step = True
 
-    print_text = _("{{yb:\"Where would I find this masked swordmaster?\"}}"),
+    print_text = ("{{yb:\"Where would I find this masked swordmaster?\"}}"),
     story = [
-        _("Clara: {{Bb:\"He said the}} " +\
+        ("Clara: {{Bb:\"He said the}} " +\
         "{{bb:masked swordmaster}} {{Bb:lived in the woods.\"}}"),
 
-        _("{{Bb:\"I presume he meant the woods just off the}} " +\
+        ("{{Bb:\"I presume he meant the woods just off the}} " +\
         "{{bb:Windy Road}}{{Bb:? The one " +\
         "near the farm and that funny lonely house outside town.\"}}"),
 
-        _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
+        ("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
     ]
 
-    companion_speech = _("Eleanor: {{Bb:\"A masked swordmaster??\"}}")
+    companion_speech = ("Eleanor: {{Bb:\"A masked swordmaster??\"}}")
 
     commands = []
 
-    def next(self):
+    def __next__(self):
         return 30, 1

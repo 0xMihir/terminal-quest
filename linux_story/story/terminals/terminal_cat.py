@@ -11,7 +11,7 @@ from linux_story.story.terminals.terminal_ls import TerminalLs
 
 
 class TerminalCat(TerminalLs):
-    terminal_commands = ["ls", "cat"]
+    terminal_commands = ["exit", "ls", "cat"]
 
     def do_cat(self, line):
         shell_command(self._get_real_path(), line, "cat")

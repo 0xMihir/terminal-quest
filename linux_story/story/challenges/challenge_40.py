@@ -16,47 +16,47 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("Swordsmaster:{{Bb:\"...this is very strange. I left the door open. Perhaps someone...or "
+        ("Swordsmaster:{{Bb:\"...this is very strange. I left the door open. Perhaps someone...or "
           "something...sneaked in while we were talking.\"}}"),
-        _("{{Bb:\"You may need my help later. Come back if you are blocked by lack of knowledge.\"}}"),
+        ("{{Bb:\"You may need my help later. Come back if you are blocked by lack of knowledge.\"}}"),
         "",
-        _("Time to head off - {{lb:leave}} the Swordmaster's house.")
+        ("Time to head off - {{lb:leave}} the Swordmaster's house.")
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing"
 
     hints = [
-        _("{{rb:Leave the house with}} {{yb:cd ..}}")
+        ("{{rb:Leave the house with}} {{yb:cd ..}}")
     ]
 
     file_list = [
         {
             "contents": get_story_file("note_woods"),
             "path": "~/woods/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "contents": get_story_file("Rabbit"),
             "path": "~/woods/thicket/Rabbit",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "path": "~/woods/thicket/rabbithole",
-            "permissions": 0755,
+            "permissions": 0o755,
             "type": "directory"
         },
         {
             "contents": get_story_file("note_swordsmaster-clearing"),
             "path": "~/woods/clearing/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         },
         {
             "contents": get_story_file("note_rabbithole"),
             "path": "~/woods/thicket/note",
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -64,13 +64,13 @@ class Step1(StepTemplateChmod):
     def block_command(self, line):
         unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 40, 2
 
 
 class Step2(StepTemplateChmod):
     story = [
-        _("{{lb:Look around}} and see if there are clues about where to go next.")
+        ("{{lb:Look around}} and see if there are clues about where to go next.")
     ]
 
     start_dir = "~/woods/clearing"
@@ -81,16 +81,16 @@ class Step2(StepTemplateChmod):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 3
 
 
 class Step3(StepTemplateChmod):
     story = [
-        _("Another note! What does this say?")
+        ("Another note! What does this say?")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -98,35 +98,35 @@ class Step3(StepTemplateChmod):
         "cat note"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")
+        ("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 4
 
 
 class Step4(StepTemplateChmod):
     story = [
-        _("It looks like we should leave the clearing."),
-        _("{{lb:Go back into the woods.}}")
+        ("It looks like we should leave the clearing."),
+        ("{{lb:Go back into the woods.}}")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods"
 
     hints = [
-        _("{{rb:Go back to the woods with}} {{yb:cd ../}}")
+        ("{{rb:Go back to the woods with}} {{yb:cd ../}}")
     ]
 
     def block_command(self, line):
         unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 40, 5
 
 
 class Step5(StepTemplateChmod):
     story = [
-        _("{{lb:Look around.}}")
+        ("{{lb:Look around.}}")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -137,16 +137,16 @@ class Step5(StepTemplateChmod):
 
     # This text is used so much we can probably save it as "default ls hint"
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 6
 
 
 class Step6(StepTemplateChmod):
     story = [
-        _("There's another note! {{lb:Read}} it.")
+        ("There's another note! {{lb:Read}} it.")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -154,34 +154,34 @@ class Step6(StepTemplateChmod):
         "cat note"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
+        ("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 40, 7
 
 
 class Step7(StepTemplateChmod):
     story = [
-        _("Let's {{lb:go}} into the thicket.")
+        ("Let's {{lb:go}} into the thicket.")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/thicket"
     hints = [
-        _("{{rb:Use}} {{yb:cd thicket}} {{rb:to go into the thicket.}}")
+        ("{{rb:Use}} {{yb:cd thicket}} {{rb:to go into the thicket.}}")
     ]
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 40, 8
 
 
 class Step8(StepTemplateChmod):
     story = [
-        _("You push through into a dense patch of plants. The trees overshadow you."),
-        _("{{lb:Look around.}}")
+        ("You push through into a dense patch of plants. The trees overshadow you."),
+        ("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -190,9 +190,9 @@ class Step8(StepTemplateChmod):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 41, 1
 

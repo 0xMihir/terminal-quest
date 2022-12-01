@@ -41,7 +41,7 @@ class StepTemplate:
         self._setup_nano()
         self.__modify_file_system()
 
-        if isinstance(self.hints, basestring):
+        if isinstance(self.hints, str):
             raise Exception("Hint is a string! Make it a list")
 
         self._last_user_input = ""
@@ -78,7 +78,7 @@ class StepTemplate:
     def terminal_command_passed(self):
         return self._terminal.passed
 
-    def next(self):
+    def __next__(self):
         raise Exception("IStep method not implemented")
 
     def is_finished_step(self, last_user_input, last_cmd_output):
@@ -129,7 +129,7 @@ class StepTemplate:
     def _validate_check_command(self, last_user_input):
         command_validated = True
         if self.commands:
-            if isinstance(self.commands, basestring):
+            if isinstance(self.commands, str):
                 command_validated = (last_user_input == self.commands)
             else:
                 command_validated = last_user_input in self.commands

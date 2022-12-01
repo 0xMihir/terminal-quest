@@ -12,7 +12,7 @@ from linux_story.story.terminals.terminal_chmod import TerminalChmod
 
 class TerminalRm(TerminalChmod):
     terminal_commands = [
-        "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod", "rm"
+        "exit", "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod", "rm"
     ]
 
     def do_rm(self, line):

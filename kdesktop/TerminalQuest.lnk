@@ -3,8 +3,8 @@ table Icon
   AppID: terminal-[q]uest
   Command: /bin/bash -i -c "/usr/bin/kano-launcher /usr/bin/linux-story-gui"
   Singleton: true
-  Icon: /usr/share/icons/Kano/88x88/apps/linux-story.png
-  IconHover: /usr/share/icons/Kano/88x88/apps/linux-story-hover.png
+  Icon: /usr/local/share/icons/Kano/88x88/apps/linux-story.png
+  IconHover: /usr/local/share/icons/Kano/88x88/apps/linux-story-hover.png
   HoverXOffset: 0
   Relative-To: grid
   X: 1

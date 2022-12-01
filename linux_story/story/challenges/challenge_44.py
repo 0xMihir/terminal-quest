@@ -19,18 +19,18 @@ class StepTemplateRm(StepTemplate):
 
 class Step1(StepTemplateRm):
     story = [
-        _("Woah! You destroyed the note."),
+        ("Woah! You destroyed the note."),
         "",
-        _("It's time to find that rabbit and put an end to this madness."),
-        _("{{lb:Go to where you met the rabbit.}}")
+        ("It's time to find that rabbit and put an end to this madness."),
+        ("{{lb:Go to where you met the rabbit.}}")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/woods/thicket"
 
     hints = [
         "",
-        _("{{lb:You met the rabbit in the}} {{bb:~/woods/thicket}}"),
-        _("{{rb:Use}} {{yb:cd ~/woods/thicket}}")
+        ("{{lb:You met the rabbit in the}} {{bb:~/woods/thicket}}"),
+        ("{{rb:Use}} {{yb:cd ~/woods/thicket}}")
     ]
     dark_theme = True
 
@@ -38,7 +38,7 @@ class Step1(StepTemplateRm):
         {
             "path": "~/town/east/library/rabbithole/Swordmaster",
             "contents": get_story_file("swordmaster"),
-            "permissions": 0644,
+            "permissions": 0o644,
             "type": "file"
         }
     ]
@@ -46,13 +46,13 @@ class Step1(StepTemplateRm):
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 44, 2
 
 
 class Step2(StepTemplateRm):
     story = [
-        _("{{lb:Look around.}}")
+        ("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -66,18 +66,18 @@ class Step2(StepTemplateRm):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+        ("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     dark_theme = True
 
-    def next(self):
+    def __next__(self):
         return 44, 3
 
 
 class Step3(StepTemplateRm):
     story = [
-        _("You are outside the rabbithole. It has a large boulder in front of it."),
-        _("Try and {{lb:go inside.}}")
+        ("You are outside the rabbithole. It has a large boulder in front of it."),
+        ("Try and {{lb:go inside.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -89,30 +89,30 @@ class Step3(StepTemplateRm):
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:cd rabbithole}} {{rb:to go inside the rabbithole.}}")
+        ("{{rb:Use}} {{yb:cd rabbithole}} {{rb:to go inside the rabbithole.}}")
     ]
     dark_theme = True
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 44, 4
 
 
 class Step4(StepTemplateRm):
     story = [
-        _("You cannot get past the boulder."),
-        _("The {{bb:rabbithole}} is completely inaccessible."),
+        ("You cannot get past the boulder."),
+        ("The {{bb:rabbithole}} is completely inaccessible."),
         "",
-        _("{{lb:Unlock it.}}"),
-        _("Use the same command you used to unlock the {{bb:private-section}}.")
+        ("{{lb:Unlock it.}}"),
+        ("Use the same command you used to unlock the {{bb:private-section}}.")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
 
     hints = [
-        _("{{rb:Use}} {{yb:chmod +rwx rabbithole/}}")
+        ("{{rb:Use}} {{yb:chmod +rwx rabbithole/}}")
     ]
     dark_theme = True
 
@@ -122,14 +122,14 @@ class Step4(StepTemplateRm):
             return True
         self.send_stored_hint()
 
-    def next(self):
+    def __next__(self):
         return 44, 5
 
 
 class Step5(StepTemplateRm):
     story = [
-        _("You push the boulder. With some effort, it slowly moves aside. Light pours out from the crack."),
-        _("{{lb:Go inside the}} {{bb:rabbithole}}{{lb:.}}")
+        ("You push the boulder. With some effort, it slowly moves aside. Light pours out from the crack."),
+        ("{{lb:Go inside the}} {{bb:rabbithole}}{{lb:.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket/rabbithole"
@@ -148,73 +148,73 @@ class Step5(StepTemplateRm):
             "path": "~/woods/thicket/rabbithole/bell",
             "type": "file",
             "contents": get_story_file("bell"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/Rabbit",
             "type": "file",
             "contents": get_story_file("Rabbit"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Mum",
             "type": "file",
             "contents": get_story_file("Mum"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Dad",
             "type": "file",
             "contents": get_story_file("Dad"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/dog",
             "type": "file",
             "contents": get_story_file("dog"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Edith",
             "type": "file",
             "contents": get_story_file("Edith"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Edward",
             "type": "file",
             "contents": get_story_file("Edward"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/grumpy-man",
             "type": "file",
             "contents": get_story_file("grumpy-man-fixed"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Mayor",
             "type": "file",
             "contents": get_story_file("Mayor"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/young-girl",
             "type": "file",
             "contents": get_story_file("young-girl"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/little-boy",
             "type": "file",
             "contents": get_story_file("little-boy"),
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Swordmaster",
             "contents": get_story_file("swordmaster-without-sword"),
             "type": "file",
-            "permissions": 0644
+            "permissions": 0o644
         },
         {
             "path": "~/woods/thicket/rabbithole/cage/Bernard",
@@ -231,10 +231,10 @@ class Step5(StepTemplateRm):
     ]
 
     def _run_after_text(self):
-        modify_permissions("~/woods/thicket/rabbithole/cage", 0500)
+        modify_permissions("~/woods/thicket/rabbithole/cage", 0o500)
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 45, 1

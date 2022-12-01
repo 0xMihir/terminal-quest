@@ -18,12 +18,12 @@ class StepTemplateMv(StepTemplate):
 
 class Step1(StepTemplateMv):
     story = [
-        _("You get the nagging feeling that you're missing something."),
-        _("What was the command that helped you find the hidden shelter?\n"),
-        _("Use it to have a {{lb:closer look around}}.\n")
+        ("You get the nagging feeling that you're missing something."),
+        ("What was the command that helped you find the hidden shelter?\n"),
+        ("Use it to have a {{lb:closer look around}}.\n")
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you.}}")
+        ("{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you.}}")
     ]
 
     story_dict = {
@@ -38,18 +38,18 @@ class Step1(StepTemplateMv):
         "ls -a"
     ]
 
-    def next(self):
+    def __next__(self):
         return 15, 2
 
 
 class Step2(StepTemplateMv):
     story = [
-        _("What's that? There's a {{bb:.tiny-chest}} in the corner of the shelter."),
-        _("Have a {{lb:look inside}} the {{bb:.tiny-chest}}.")
+        ("What's that? There's a {{bb:.tiny-chest}} in the corner of the shelter."),
+        ("Have a {{lb:look inside}} the {{bb:.tiny-chest}}.")
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}")
+        ("{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}")
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -61,18 +61,18 @@ class Step2(StepTemplateMv):
         "ls -a .tiny-chest/"
     ]
 
-    def next(self):
+    def __next__(self):
         return 15, 3
 
 
 class Step3(StepTemplateMv):
     story = [
-        _("You see a special looking scroll with a stamp that says {{bb:MV}}."),
-        _("{{lb:Read}} what it says.")
+        ("You see a special looking scroll with a stamp that says {{bb:MV}}."),
+        ("{{lb:Read}} what it says.")
     ]
 
     hints = [
-        _("{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}")
+        ("{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}")
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -81,19 +81,19 @@ class Step3(StepTemplateMv):
         "cat .tiny-chest/MV"
     ]
 
-    def next(self):
+    def __next__(self):
         return 15, 4
 
 
 class Step4(StepTemplateMv):
     story = [
 
-        _("{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{bb:.tiny-chest}}{{Bb:. We use it to keep things safe."),
-        _("That MV command is how I found out about moving objects with}} {{yb:mv}}{{Bb:."),
-        _("It's probably more useful to you, please take it as a thank you for saving us.\"}}"),
+        ("{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{bb:.tiny-chest}}{{Bb:. We use it to keep things safe."),
+        ("That MV command is how I found out about moving objects with}} {{yb:mv}}{{Bb:."),
+        ("It's probably more useful to you, please take it as a thank you for saving us.\"}}"),
         "",
-        _("\nMaybe you should go back to {{bb:my-house}} to look for more hidden items."),
-        _("To quickly go back home, use {{yb:cd ~/my-house}}\n")
+        ("\nMaybe you should go back to {{bb:my-house}} to look for more hidden items."),
+        ("To quickly go back home, use {{yb:cd ~/my-house}}\n")
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -103,28 +103,28 @@ class Step4(StepTemplateMv):
         'cd ~/my-house'
     ]
     hints = [
-        _("{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house in one step.}}")
+        ("{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house in one step.}}")
     ]
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def next(self):
+    def __next__(self):
         return 15, 5
 
 
 class Step5(StepTemplateMv):
     story = [
-        _("Let's see if we can find anything hidden around here!"),
-        _("Where do you think any hidden things could be?\n"),
-        _("Try {{lb:looking closely}} in {{bb:my-room}} first.")
+        ("Let's see if we can find anything hidden around here!"),
+        ("Where do you think any hidden things could be?\n"),
+        ("Try {{lb:looking closely}} in {{bb:my-room}} first.")
     ]
 
     start_dir = '~/my-house'
 
     hints = [
-        _("{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}"),
-        _("{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-room}}{{rb:.}}")
+        ("{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}"),
+        ("{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-room}}{{rb:.}}")
     ]
 
     def check_output(self, output):
@@ -137,5 +137,5 @@ class Step5(StepTemplateMv):
 
         return False
 
-    def next(self):
+    def __next__(self):
         return 16, 1

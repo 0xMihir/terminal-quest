@@ -21,6 +21,7 @@ from kano_profile.apps import \
 from linux_story.common import \
     localized_story_files_dir_pattern, \
     fallback_story_files_dir
+from functools import reduce
 
 
 FORMATTING_BEGIN = re.compile(r"{{\w+:")
@@ -33,7 +34,7 @@ def debugger(text):
     """
 
     if False:
-        print text
+        print(text)
 
 
 def get_script_cmd(string, real_path):
@@ -203,7 +204,7 @@ def print_method_module(method):
         if name == '__main__':
             filename = sys.modules[self.__module__].__file__
             name = os.path.splitext(os.path.basename(filename))[0]
-        print name
+        print(name)
         return method(self)
     return printer
 
@@ -227,10 +228,10 @@ def get_ascii_art(name):
             ascii_art = f.read()
 
     except (IOError, OSError) as e:
-            logger.error('Could not load file {} - [{}]'.format(asset_path, e))
+        logger.error('Could not load file {} - [{}]'.format(asset_path, e))
     except Exception as e:
-            logger.error('Unexpected error while loading the ascii art'
-                         ' - [{}]'.format(e))
+        logger.error('Unexpected error while loading the ascii art'
+                     ' - [{}]'.format(e))
 
     return ascii_art
 
@@ -252,7 +253,8 @@ def get_path_to_file_in_system(name):
     lang_dirs = get_language_dirs()
 
     for lang_dir in lang_dirs:
-        asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
+        asset_path = os.path.join(
+            localized_story_files_dir_pattern.format(lang_dir), name)
         if os.path.isfile(asset_path):
             path_in_system = asset_path
             break
@@ -328,7 +330,7 @@ def wrap_in_box(lines):
     max_characters = reduce(reduction, lines, 0)
     outer_line = " {} ".format("-" * (max_characters + 2))
 
-    new_lines = map(format_line, lines)
+    new_lines = list(map(format_line, lines))
 
     return [outer_line] + new_lines + [outer_line + "\n"]
 
@@ -347,3 +349,32 @@ def has_write_permissions(path):
 
 def has_execute_permissions(path):
     return os.access(path, os.X_OK)
+
+
+# pairs = {
+#     'r': 'red',
+#     'g': 'green',
+#     'G': 'light-green',
+#     'b': 'blue',
+#     'y': 'yellow',
+#     'o': 'extended(208)',
+#     'w': 'white',
+#     'l': 'extended(147)',
+#     'c': 'cyan',
+#     'p': 'extended(177)',
+#     'P': 'extended(212)',
+#     'B': 'light-blue'
+# }
+pairs = {'r': 1, 'g': 2, 'G': 10, 'b': 4, 'y': 3, 'o': 208,
+         'w': 15, 'l': 147, 'c': 6, 'p': 177, 'P': 212, 'B': 12}
+
+def colorize(match):
+    color = match.group(1)[0]
+    bold = int(match.group(1)[1] == "b")
+    return f"\033[{bold};38;5;{pairs[color]}m"
+
+
+def colorize_string(str):
+    a = re.sub("\{\{(\w+)?:",colorize,str)
+    a = re.sub("\}\}","\033[0m",a)
+    return a

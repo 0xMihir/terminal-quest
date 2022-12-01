@@ -10,27 +10,27 @@ from linux_story.step_helper_functions import unblock_cd_commands
 
 
 GO_TO_THE_LIBRARY = [
-    _("The Rabbit wants to know where the Super User command is kept?"),
+    ("The Rabbit wants to know where the Super User command is kept?"),
     "....",
-    _("Let's head to the {{bb:~/town/east/library}}."),
-    _("It looks as if the Rabbit will follow.")
+    ("Let's head to the {{bb:~/town/east/library}}."),
+    ("It looks as if the Rabbit will follow.")
 ]
 
 RABBITS_ARE_QUIET = [
-    _("Rabbit: {{Bb:...}}"),
+    ("Rabbit: {{Bb:...}}"),
     "",
-    _("It seems the Rabbit doesn't say very much."),
-    _("That's quite normal for rabbits.")
+    ("It seems the Rabbit doesn't say very much."),
+    ("That's quite normal for rabbits.")
 ]
 
-RABBIT_BLOCKING_RABBITHOLE = _("The rabbit is in front of the rabbithole and won't let you pass.")
+RABBIT_BLOCKING_RABBITHOLE = ("The rabbit is in front of the rabbithole and won't let you pass.")
 
 
 class TerminalRabbit(TerminalChmod):
     def _autocomplete_files(self, text, line, begidx, endidx, only_dirs=False, only_exe=False):
         completions = TerminalChmod._autocomplete_files(self, text, line, begidx, endidx, only_dirs, only_exe)
         if "cage/" in completions or "Mum" in completions:
-            print "\n" + RABBIT_BLOCKING_RABBITHOLE
+            print(("\n" + RABBIT_BLOCKING_RABBITHOLE))
             return []
         else:
             return completions
@@ -41,7 +41,7 @@ class StepTemplateChmod(StepTemplate):
 
     def block_command(self, line):
         if "rabbithole" in line and ("ls" in line or "cat" in line):
-            print RABBIT_BLOCKING_RABBITHOLE
+            print(RABBIT_BLOCKING_RABBITHOLE)
             return True
         else:
             return StepTemplate.block_command(self, line)
@@ -50,14 +50,14 @@ class StepTemplateChmod(StepTemplate):
 # Same as the towns people, and the last challenge?
 class Step1(StepTemplateChmod):
     story = [
-        _("You see a Rabbit, a piece of paper and a rabbithole."),
-        _("This Rabbit looks somewhat familiar..."),
-        _("{{lb:Listen}} to the Rabbit.")
+        ("You see a Rabbit, a piece of paper and a rabbithole."),
+        ("This Rabbit looks somewhat familiar..."),
+        ("{{lb:Listen}} to the Rabbit.")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
     hints = [
-        _("{{rb:Use}} {{yb:cat Rabbit}} {{rb:to listen to the Rabbit.}}")
+        ("{{rb:Use}} {{yb:cat Rabbit}} {{rb:to listen to the Rabbit.}}")
     ]
 
     read_note = False
@@ -71,7 +71,7 @@ class Step1(StepTemplateChmod):
 
         return StepTemplateChmod.check_command(self, line)
 
-    def next(self):
+    def __next__(self):
         if self.read_note:
             return 41, 4
         else:
@@ -79,17 +79,17 @@ class Step1(StepTemplateChmod):
 
 
 class Step2(StepTemplateChmod):
-    story = RABBITS_ARE_QUIET + ["", _("{{lb:Examine}} the note.")]
+    story = RABBITS_ARE_QUIET + ["", ("{{lb:Examine}} the note.")]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
     commands = [
         "cat note"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
+        ("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
     ]
 
-    def next(self):
+    def __next__(self):
         return 41, 3
 
 
@@ -98,13 +98,13 @@ class Step3(StepTemplateChmod):
     start_dir = "~/woods/thicket"
     end_dir = "~/town/east/library"
     hints = [
-        _("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
+        ("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
     ]
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 42, 1
 
 
@@ -113,12 +113,12 @@ class Step4(StepTemplateChmod):
     start_dir = "~/woods/thicket"
     end_dir = "~/town/east/library"
     hints = [
-        _("{{rb:Is this the same place the swordmaster referred to?}}"),
-        _("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
+        ("{{rb:Is this the same place the swordmaster referred to?}}"),
+        ("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
     ]
 
     def block_command(self, line):
         return unblock_cd_commands(line)
 
-    def next(self):
+    def __next__(self):
         return 42, 1
